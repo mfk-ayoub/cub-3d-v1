@@ -116,8 +116,8 @@ int	valid_texture(t_texture *texture, int fd)
 		printf(TEXTURE);
 		return (1);
 	}
-	else if (!texture->no || !texture->so || !texture->we || !texture->ea || !texture->rgb->f
-		|| !texture->rgb->c)
+	else if (!texture->no || !texture->so || !texture->we || !texture->ea
+		|| !texture->rgb->f || !texture->rgb->c)
 		return (printf(TEXTURE), 1);
 	else if (parse_texture_extension(texture))
 		return (printf(T_EXTENTASION), 1);

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 19:56:45 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/16 20:01:10 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 # define HEIGHT 800
 # define BUFFER_SIZE 1
 
-#define RED "\033[31m"
-#define DEFAULT "\033[0m"
+# define RED "\033[31m"
+# define DEFAULT "\033[0m"
 
-#define EXTENTASION  RED "error: " DEFAULT "Invalid extension\n"
-#define TEXTURE RED "error: " DEFAULT  "Textures not found\n"
-#define T_EXTENTASION RED "error: " DEFAULT  "Invalid texture extension\n"
-#define COLORS_ERROR RED "error: " DEFAULT "Invalid colours\n"
+# define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
+# define TEXTURE RED "error: " DEFAULT "Textures not found\n"
+# define T_EXTENTASION RED "error: " DEFAULT "Invalid texture extension\n"
+# define COLORS_ERROR RED "error: " DEFAULT "Invalid colours\n"
+
 #endif

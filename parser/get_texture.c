@@ -47,7 +47,7 @@ int	check_colors(t_texture *texture)
 }
 int	parse_texture_extension(t_texture *texture)
 {
-	int	fd;
+	int fd;
 
 	fd = open(texture->ea, O_RDONLY);
 	if (fd < 0)
@@ -65,9 +65,9 @@ int	parse_texture_extension(t_texture *texture)
 	if (fd < 0)
 		return (close(fd), 1);
 	close(fd);
-	if (!check_extension(texture->no, "xpm") || !check_extension(texture->ea, "xpm")
-		|| !check_extension(texture->we, "xpm") || !check_extension(texture->so,
-			"xpm"))
+	if (!check_extension(texture->no, "xpm") || !check_extension(texture->ea,
+			"xpm") || !check_extension(texture->we, "xpm")
+		|| !check_extension(texture->so, "xpm"))
 		return (1);
 	return (0);
 }

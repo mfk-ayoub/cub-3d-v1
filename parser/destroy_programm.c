@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:55:10 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 19:55:22 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/16 20:21:28 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,20 @@ void	free_array(char **arr)
 	}
 	free(arr);
 	arr = NULL;
+}
+
+void	ft_mapclear(t_maplist **map)
+{
+	t_maplist *tmp;
+
+	if (!map || !*map)
+		return ;
+	while (*map)
+	{
+		tmp = *map;
+		*map = (*map)->next;
+		free(tmp->line);
+		free(tmp);
+	}
+	*map = NULL;
 }

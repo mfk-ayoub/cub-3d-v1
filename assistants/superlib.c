@@ -58,6 +58,5 @@ size_t	ft_strspn(const char *s, const char *accept)
 
 int	check_space(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n') ;
+	return (c == ' ' || c == '\t' || c == '\n');
 }
-

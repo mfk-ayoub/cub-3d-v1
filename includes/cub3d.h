@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 20:23:41 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:54:56 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int			get_biggest_line(t_maplist *head);
 void		ft_mapclear(t_maplist **map);
 
 
+//render
 
+int	call_mlx(t_cub *cub);
 
 #endif

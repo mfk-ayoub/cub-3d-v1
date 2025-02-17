@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:46:01 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 20:05:17 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:44:23 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	start_parser(t_texture *texture, t_data *data, char *path, int fd)
 		return (1);
 	if (check_map(data, path))
 	{
-		printf("Error7\n");
+		printf(INVALID_MAP);
 		return (close(fd), 1);
 	}
 	return (0);
@@ -85,7 +85,7 @@ int	proccess_input(t_data *data, t_cub *cub, char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("Error in open file\n");
+		printf(FILE_ERROR);
 		exit(EXIT_FAILURE);
 	}
 	if (init_data(&data))

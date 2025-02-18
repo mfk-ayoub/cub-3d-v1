@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./includes  -g3
+CFLAGS = -Wall -Wextra -Werror -I./includes  -g3 -g
 LIBS = -lmlx -lXext -lX11 -lm
 BINDIR = bin
 DIRS = . parser src assistants

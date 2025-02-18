@@ -6,13 +6,13 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/17 13:04:12 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/17 23:13:19 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int ray_casting(t_cub *cub, )
-{
-	
-}
+// int ray_casting(t_cub *cub, )
+// {
+
+// }

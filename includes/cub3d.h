@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/17 12:54:56 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/18 02:05:54 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 // parser
 int			proccess_input(t_data *data, t_cub *cub, char *path);
 int			init_texture(t_texture **texture);
-int			init_data(t_data **data);
-int			init_cub(t_cub **cub, t_data *data);
+int			init_data(t_data *data);
+int			init_cub(t_cub *cub, t_data *data, t_texture *texture);
 int			ft_atoi(char *str);
 char		**ft_split(char const *s, char c);
 char		*get_next_line(int fd);
@@ -61,9 +61,17 @@ t_maplist	*get_map(int fd);
 int			get_biggest_line(t_maplist *head);
 void		ft_mapclear(t_maplist **map);
 
+// render
 
-//render
+int			call_mlx(t_cub *cub);
+int			get_player_position(t_cub *cub, t_data *data);
+void		put_pixel_to_image(t_mlx img, int x, int y, int color);
+void		path_guide(t_cub *cub, t_data *data);
+void		put_pixel(t_cub *cub, double map_x, double map_y, int color);
+int			calculate_pixel_size(t_data *data);
+void		draw_circle(t_cub *cub);
+// debug
 
-int	call_mlx(t_cub *cub);
+void		debug(t_cub *cub, t_data *data, t_texture *texture);
 
 #endif

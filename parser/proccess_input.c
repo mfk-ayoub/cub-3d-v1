@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:46:01 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/17 12:44:23 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/17 23:59:04 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,17 @@ int	proccess_input(t_data *data, t_cub *cub, char *path)
 		printf(FILE_ERROR);
 		exit(EXIT_FAILURE);
 	}
-	if (init_data(&data))
+	if (init_data(data))
 		exit(EXIT_FAILURE);
-	if (init_cub(&cub, data))
-	{
-		free(data);
-		exit(EXIT_FAILURE);
-	}
 	if (init_texture(&texture))
+		exit(EXIT_FAILURE);
+	if (init_cub(cub, data, texture))
 	{
-		free(cub), free(data);
+		free(texture);
 		exit(EXIT_FAILURE);
 	}
 	if (start_parser(texture, data, path, fd))
 		return (1);
+	debug(cub,data,texture);
 	return (0);
 }

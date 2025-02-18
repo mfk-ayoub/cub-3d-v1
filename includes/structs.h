@@ -6,12 +6,13 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 20:17:47 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/18 01:58:53 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
 typedef struct s_list
 {
 	char				*content;
@@ -23,6 +24,14 @@ typedef struct s_maplist
 	char				*line;
 	struct s_maplist	*next;
 }						t_maplist;
+
+typedef struct s_rays
+{
+	int					r_x;
+	int					r_y;
+	double				r_angle;
+
+}						t_rays;
 
 typedef struct s_mlx
 {
@@ -67,8 +76,10 @@ typedef struct s_cub
 	float				player_x;
 	float				player_y;
 	float				p_angle;
+	int					pixel_size;
 	t_data				*data;
-	// t_rays				*rays;
+	t_texture			*texture;
+	t_rays				*rays;
 }						t_cub;
 
 #endif

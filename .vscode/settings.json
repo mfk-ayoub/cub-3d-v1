@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"*.embeddedhtml": "html",
+		"cub3d.h": "c",
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"span": "c",
+		"cstdlib": "c"
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/18 01:56:15 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/18 21:47:42 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -33,7 +33,7 @@
 # define SCALE 0.5
 # define OFFSET 4
 # define MOVESTEP 4
-
+# define RADIUS 0.5
 # define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
 # define TEXTURE RED "error: " DEFAULT "Textures not found\n"
 # define T_EXTENTASION RED "error: " DEFAULT "Invalid texture extension\n"

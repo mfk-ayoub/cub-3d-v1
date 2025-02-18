@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 02:04:46 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/18 02:12:10 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/18 02:24:27 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,24 @@ void	put_pixel(t_cub *cub, double map_x, double map_y, int color)
 		}
 	}
 }
+void	draw_player(t_cub *cub, int px, int py, int color)
+{
+	int	x;
+	int	y;
+
+	y = -RADIUS;
+	while (y <= RADIUS)
+	{
+		x = -RADIUS;
+		while (x <= RADIUS)
+		{
+			if ((x * x) + (y * y) <= RADIUS * RADIUS)
+				put_pixel_to_image(cub->img, px + x, py + y, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	path_guide(t_cub *cub, t_data *data)
 {
@@ -97,8 +115,10 @@ void	path_guide(t_cub *cub, t_data *data)
 			{
 				if (data->map[y][x] == '1')
 					put_pixel(cub, x, y, 0x0000df0);
-				else
+				else if (data->map[y][x] == '0')
 					put_pixel(cub, x, y, 0x00ffdf0);
+				else
+					draw_player(cub,start_x,start_y,0x55fdf1);
 			}
 		}
 	}

@@ -17,7 +17,7 @@
 
 int game_loop(t_cub *cub)
 {
-   
+    mlx_clear_window(cub->mlx, cub->win);
     ray_casting(cub, cub->data, cub->texture, cub->rays);
     
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
@@ -35,10 +35,11 @@ int run_the_program(t_data *data, t_cub *cub)
     cub->rays = malloc(sizeof(t_rays));
     if (!cub->rays)
         return (1);
-    ft_memset(&cub->rays,0,sizeof(t_rays));
+    ft_memset(cub->rays, 0, sizeof(t_rays));
     init_rays(cub->rays);
     // mlx_hook(cub->win, 2, 1L << 0, key_hook, cub); 
     mlx_loop_hook(cub->mlx, game_loop, cub);
+    mlx_loop(cub->mlx);
     free(cub->rays);
     return (0);
 }

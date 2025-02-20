@@ -6,19 +6,26 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 05:30:16 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 05:57:51 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+
+
 double	get_horizontal_intersection(t_cub *cub, t_rays *rays)
 {
 	float	x_step;
 	float	y_step;
+	float	inter_x;
+	float	inter_y;
 
 	x_step = TILE_SIZE;
 	y_step = TILE_SIZE * tan(normalize_angle(rays->r_angle));
+	inter_x = floor(cub->player_x / TILE_SIZE) * TILE_SIZE;
+	inter_y = cub->player_y + (x_step - cub->player_x)
+		* tan(normalize_angle(rays->r_angle));
 }
 
 double	get_vertical_intersection(t_cub *cub, t_rays *rays)
@@ -33,6 +40,13 @@ double	get_vertical_intersection(t_cub *cub, t_rays *rays)
 	inter_x = floor(cub->player_x / TILE_SIZE) * TILE_SIZE;
 	inter_y = cub->player_y + (x_step - cub->player_x)
 		* tan(normalize_angle(rays->r_angle));
+
+    while (check_if_wall())
+    {
+        inter_x += x_step;
+        inter_y += y_step;
+    }
+    
 }
 
 void	rays_data(t_cub *cub, t_rays *rays)
@@ -45,6 +59,9 @@ void	rays_data(t_cub *cub, t_rays *rays)
 
 void	render_wall(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 {
+    
+
+    
 }
 int	ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 {
@@ -60,5 +77,7 @@ int	ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 		else
 			rays->distance = rays->v_inter;
 		render_wall(cub, data, texture, rays);
+        rays->r_angle +=  FOV / NUM_RAYS;
 	}
 }
+

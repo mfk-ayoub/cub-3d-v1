@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 05:13:45 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 05:58:11 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void		draw_player(t_cub *cub, int px, int py, int color);
 int			ray_casting(t_cub *cub, t_data *data, t_texture *texture,
 				t_rays *rays);
 void		init_rays(t_rays *rays);
-
-int			check_if_wall(t_data *data, t_rays *rays);
+float	normalize_angle(float angle);
+int check_if_wall(t_data *data, float x, float y);
 // debug
 
 void		debug(t_cub *cub, t_data *data, t_texture *texture);

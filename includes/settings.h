@@ -6,16 +6,16 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/19 01:36:45 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 04:29:31 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
-# include "../minilibx-linux/mlx.h"
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,7 +28,7 @@
 # define DEFAULT "\033[0m"
 # define PI 3.141592653589793
 # define FOV 60 * (PI / 180.0)
-# define TILE_SIZE 10
+# define TILE_SIZE 30
 # define SCALE 0.5
 # define OFFSET 4
 # define MOVESTEP 0.5

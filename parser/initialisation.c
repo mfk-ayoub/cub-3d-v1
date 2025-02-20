@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 03:51:25 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 04:05:38 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,15 @@ int	init_texture(t_texture **texture)
 
 void init_rays(t_rays *rays)
 {
-    // int i;
-
-    // i = 0;
-    // while (i < NUM_RAYS)
-    // {
-        rays->r_angle = 0;
-        rays->dx = 0;
-        rays->dy = 0;
-        rays->r_x = 0;
-        rays->r_y = 0;
-        rays->side = 0;
-        rays->p_x = 0;
-        rays->p_y = 0; 
-        // i++;
-    // }
+	rays->r_angle = 0;
+	rays->dx = 0;
+	rays->dy = 0;
+	rays->r_x = 0;
+	rays->r_y = 0;
+	rays->side = 0;
+	rays->p_x = 0;
+	rays->p_y = 0; 
+	rays->h_inter = 0;
+	rays->v_inter = 0;
+	rays->distance = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 03:42:01 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 05:08:25 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,17 @@ typedef struct s_maplist
 
 typedef struct s_rays
 {
-	float					r_x;
-	float					r_y;
+	float				r_x;
+	float				r_y;
 	float				p_x;
 	float				p_y;
 	double				r_angle;
-	double 				dx;
+	double				dx;
 	double				dy;
+	double				h_inter;
+	double				v_inter;
 	int					side;
+	double				distance;
 }						t_rays;
 
 typedef struct s_mlx
@@ -69,7 +72,7 @@ typedef struct s_data
 	int					j;
 	int					i;
 	int					f_rgb;
-	int 				c_rgb;
+	int					c_rgb;
 }						t_data;
 
 typedef struct s_cub
@@ -86,8 +89,8 @@ typedef struct s_cub
 	t_data				*data;
 	t_texture			*texture;
 	t_rays				*rays;
-	int tex_width;
-	int tex_height;
+	int					tex_width;
+	int					tex_height;
 }						t_cub;
 
 #endif

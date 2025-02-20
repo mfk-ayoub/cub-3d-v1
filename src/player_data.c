@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:15:12 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/19 00:54:15 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 06:47:40 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ int	check_player_errors(char **map, int row, int col, int *player_count)
 	}
 	return (0);
 }
-
-void	get_player_angle(t_cub *cub, char **map, int row, int col)
+void	set_player_data(t_cub *cub, t_data *data, int row, int col)
 {
-	if (map[row][col] == 'N')
-		cub->p_angle = 3 * (PI / 2);
-	else if (map[row][col] == 'S')
-		cub->p_angle = (PI / 2);
-	else if (map[row][col] == 'E')
+	cub->player_x = (col * TILE_SIZE) + TILE_SIZE / 2;
+	cub->player_y = (row * TILE_SIZE) + TILE_SIZE / 2;
+	if (data->map[row][col] == 'N')
+		cub->p_angle = PI / 2;
+	else if (data->map[row][col] == 'S')
+		cub->p_angle = 3 * PI / 2;
+	else if (data->map[row][col] == 'E')
 		cub->p_angle = 0;
-	else if (map[row][col] == 'W')
+	else if (data->map[row][col] == 'W')
 		cub->p_angle = PI;
+	data->map[row][col] = '0';
 }
 
 int	get_player_position(t_cub *cub, t_data *data)
@@ -56,11 +58,7 @@ int	get_player_position(t_cub *cub, t_data *data)
 				return (1);
 			if (data->map[row][col] == 'N' || data->map[row][col] == 'S'
 				|| data->map[row][col] == 'E' || data->map[row][col] == 'W')
-			{
-				cub->player_x = col + 0.5;
-				cub->player_y = row + 0.5;
-				get_player_angle(cub, data->map, row, col);
-			}
+				set_player_data(cub, data, row, col);
 			col++;
 		}
 		row++;

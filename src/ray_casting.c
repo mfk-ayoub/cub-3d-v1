@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 05:57:51 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 06:48:16 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ double	get_horizontal_intersection(t_cub *cub, t_rays *rays)
 	inter_x = floor(cub->player_x / TILE_SIZE) * TILE_SIZE;
 	inter_y = cub->player_y + (x_step - cub->player_x)
 		* tan(normalize_angle(rays->r_angle));
+    
+    while (!check_if_wall(cub->data,inter_x,inter_x))
+    {
+        inter_x += x_step;
+        inter_y += y_step;
+    }
+    
 }
 
 double	get_vertical_intersection(t_cub *cub, t_rays *rays)
@@ -41,7 +48,7 @@ double	get_vertical_intersection(t_cub *cub, t_rays *rays)
 	inter_y = cub->player_y + (x_step - cub->player_x)
 		* tan(normalize_angle(rays->r_angle));
 
-    while (check_if_wall())
+    while (!check_if_wall(cub->data,inter_x,inter_x))
     {
         inter_x += x_step;
         inter_y += y_step;

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/18 02:05:54 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 03:43:26 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		process_line(t_data *data, t_maplist *temp);
 t_maplist	*get_map(int fd);
 int			get_biggest_line(t_maplist *head);
 void		ft_mapclear(t_maplist **map);
-
+void	*ft_memset(void *ptr, int x, size_t n);
 // render
 
 int			call_mlx(t_cub *cub);
@@ -70,6 +70,10 @@ void		path_guide(t_cub *cub, t_data *data);
 void		put_pixel(t_cub *cub, double map_x, double map_y, int color);
 int			calculate_pixel_size(t_data *data);
 void		draw_circle(t_cub *cub);
+void	draw_rays(t_cub *cub, t_rays *rays, t_data *data);
+void	draw_player(t_cub *cub, int px, int py, int color);
+int ray_casting(t_cub *cub, t_data *data, t_texture *texture,t_rays *rays);
+void init_rays(t_rays *rays);
 // debug
 
 void		debug(t_cub *cub, t_data *data, t_texture *texture);

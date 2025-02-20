@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:15:12 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/18 02:07:34 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/19 00:54:15 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	get_player_position(t_cub *cub, t_data *data)
 
 	player_count = 0;
 	row = 0;
-	debug(cub, data, cub->texture);
 	while (data->map[row])
 	{
 		col = 0;

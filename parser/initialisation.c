@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/17 23:58:03 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 03:51:25 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	init_data(t_data *data)
 	data->row = 0;
 	data->j = 0;
 	data->i = 0;
+	data->c_rgb = 0;
+	data->f_rgb = 0;
 	return (0);
 }
 
@@ -29,6 +31,8 @@ int	init_cub(t_cub *cub, t_data *data, t_texture *texture)
 	cub->player_x = 0;
 	cub->player_y = 0;
 	cub->texture = texture;
+	cub->tex_height = 0;
+	cub->tex_width = 0;
 	return (0);
 }
 
@@ -47,4 +51,23 @@ int	init_texture(t_texture **texture)
 	(*texture)->we = NULL;
 	(*texture)->ea = NULL;
 	return (0);
+}
+
+void init_rays(t_rays *rays)
+{
+    // int i;
+
+    // i = 0;
+    // while (i < NUM_RAYS)
+    // {
+        rays->r_angle = 0;
+        rays->dx = 0;
+        rays->dy = 0;
+        rays->r_x = 0;
+        rays->r_y = 0;
+        rays->side = 0;
+        rays->p_x = 0;
+        rays->p_y = 0; 
+        // i++;
+    // }
 }

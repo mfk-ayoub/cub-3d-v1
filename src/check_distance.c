@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:32:27 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 06:49:25 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 03:15:06 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_if_wall(t_data *data, float x, float y)
 	map_y = (int)(y / TILE_SIZE);
 	if (map_x < 0 || map_x >= data->col || map_y < 0 || map_y >= data->row)
 		return (1);
-	if (data->map[map_y][map_x] == '1')
-		return (1);
+	if (data->map[map_y] && map_x < (int)ft_strlen(data->map[map_y]))
+		return (data->map[map_y][map_x] == '1');
 	return (0);
 }

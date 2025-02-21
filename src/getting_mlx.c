@@ -6,22 +6,23 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 18:47:30 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/18 02:03:57 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 03:22:10 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	put_pixel_to_image(t_mlx img, int x, int y, int color)
+void	put_pixel(t_cub *cub, int x, int y, int color)
 {
-	int	*pixel_data;
+	char	*dst;
 
-	if (y >= HEIGHT || y < 0 || x < 0 || x >= WIDTH)
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return ;
-	if (!img.addr)
+	if (!cub->img.addr)
 		return ;
-	pixel_data = (int *)img.addr;
-	pixel_data[y * (img.line_length / 4) + x] = color;
+	dst = cub->img.addr + (y * cub->img.line_length + x
+			* (cub->img.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 int	call_mlx(t_cub *cub)

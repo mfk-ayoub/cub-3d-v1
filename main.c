@@ -1,30 +1,27 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   main.c                                             :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-// /*   Updated: 2025/02/19 01:03:34 by ayel-mou         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
+/*   Updated: 2025/02/21 04:46:27 by ayel-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/cub3d.h"
-
-
-
 
 int game_loop(t_cub *cub)
 {
     mlx_clear_window(cub->mlx, cub->win);
+   
     ray_casting(cub, cub->data, cub->texture, cub->rays);
-    
-    mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
+    path_guide(cub,cub->data);
+    if (cub->img.img)
+        mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
     return (0);
 }
-
-
 
 int run_the_program(t_data *data, t_cub *cub)
 {
@@ -37,10 +34,20 @@ int run_the_program(t_data *data, t_cub *cub)
         return (1);
     ft_memset(cub->rays, 0, sizeof(t_rays));
     init_rays(cub->rays);
-    // mlx_hook(cub->win, 2, 1L << 0, key_hook, cub); 
+    cub->pixel_size = calculate_pixel_size(cub->data);
+    if (!cub->img.img)
+    {
+        cub->img.img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+        if (!cub->img.img)
+            return (1);
+        cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel,
+                                        &cub->img.line_length, &cub->img.endian);
+    }
     mlx_loop_hook(cub->mlx, game_loop, cub);
     mlx_loop(cub->mlx);
     free(cub->rays);
+    if (cub->img.img)
+        mlx_destroy_image(cub->mlx, cub->img.img);
     return (0);
 }
 
@@ -49,8 +56,8 @@ int main(int ac, char **av)
     t_data data;
     t_cub cub;
 
-    ft_memset(&cub,0,sizeof(t_cub));
-    ft_memset(&data,0,sizeof(t_data));
+    ft_memset(&cub, 0, sizeof(t_cub));
+    ft_memset(&data, 0, sizeof(t_data));
     if (ac == 2)
     {
         if (proccess_input(&data, &cub, av[1]))

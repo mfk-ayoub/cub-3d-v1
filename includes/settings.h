@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 04:29:31 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 04:59:02 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 800
 # define BUFFER_SIZE 1
 # define RED "\033[31m"
 # define DEFAULT "\033[0m"
@@ -33,7 +33,7 @@
 # define OFFSET 4
 # define MOVESTEP 0.5
 # define RADIUS 4
-# define NUM_RAYS 800
+# define NUM_RAYS 1200
 
 # define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
 # define TEXTURE RED "error: " DEFAULT "Textures not found\n"

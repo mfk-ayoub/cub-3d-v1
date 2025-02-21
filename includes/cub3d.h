@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 22:42:51 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 03:45:01 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,23 @@ void		*ft_memset(void *ptr, int x, size_t n);
 double		calculate_distance(double x1, double x2, double y1, double y2);
 int			call_mlx(t_cub *cub);
 int			get_player_position(t_cub *cub, t_data *data);
-void		put_pixel_to_image(t_mlx img, int x, int y, int color);
+// void		put_pixel_to_image(t_mlx img, int x, int y, int color);
 void		path_guide(t_cub *cub, t_data *data);
-void		put_pixel(t_cub *cub, double map_x, double map_y, int color);
+void		put_pixel(t_cub *cub, int x, int y, int color);
 int			calculate_pixel_size(t_data *data);
 void		draw_player(t_cub *cub, int px, int py, int color);
 int			ray_casting(t_cub *cub, t_data *data, t_texture *texture,
 				t_rays *rays);
 void		init_rays(t_rays *rays);
-float	normalize_angle(float angle);
-int check_if_wall(t_data *data, float x, float y);
-double	calculate_distance(double x1, double x2, double y1, double y2);
+float		normalize_angle(float angle);
+int			check_if_wall(t_data *data, float x, float y);
+double		calculate_distance(double x1, double x2, double y1, double y2);
+double		get_horizontal_intersection(t_cub *cub, t_rays *rays);
+double		get_vertical_intersection(t_cub *cub, t_rays *rays);
+void	adjust_x_step(double angle, float *x_step);
+void	adjust_y_step(double angle, float *y_step);
+int	check_vertical_intersection(double angle, float *x_step, float *inter_x);
+int	check_horizontal_intersection(double angle, float *y_step, float *inter_y);
 // debug
 
 void		debug(t_cub *cub, t_data *data, t_texture *texture);

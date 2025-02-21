@@ -6,104 +6,79 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 01:52:41 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 04:57:08 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-int check_vertical_intersection(double angle, float *x_step, float *inter_x)
+void rays_data(t_cub *cub, t_rays *rays)
 {
-	
+    rays->p_x = cub->player_x;
+    rays->p_y = cub->player_y;
+    rays->h_inter = get_horizontal_intersection(cub, rays);
+    rays->v_inter = get_vertical_intersection(cub, rays);
 }
 
-int check_horizontal_intersection(double angle, float *y_step, float *inter_y)
+void render_wall(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 {
-	
+    (void)texture;
+    (void)data;
+    double wall_height;
+    int top_pixel;
+    int bottom_pixel;
+    int y;
+    int color;
+
+    // Calculate wall height with fisheye correction
+    wall_height = (TILE_SIZE / (rays->distance * cos(normalize_angle(rays->r_angle - cub->p_angle)))) *
+                  ((WIDTH / 2) / tan(FOV));
+    top_pixel = (int)(HEIGHT / 2 - wall_height / 2);
+    bottom_pixel = (int)(HEIGHT / 2 + wall_height / 2);
+
+    // Clamp wall bounds to screen
+    if (top_pixel < 0)
+        top_pixel = 0;
+    if (bottom_pixel > HEIGHT)
+        bottom_pixel = HEIGHT;
+
+    // Choose wall color based on intersection type
+    if (rays->flag == 1) // Horizontal
+        color = 0xFF0000; // Red
+    else // Vertical
+        color = 0x0000FF; // Blue
+
+    // Draw the wall with a solid color using the fixed put_pixel
+    for (y = top_pixel; y < bottom_pixel; y++)
+        put_pixel(cub, rays->ray_id, y, color);
+
+    // Draw floor and ceiling (optional for visualization)
+    for (y = 0; y < top_pixel; y++)
+        put_pixel(cub, rays->ray_id, y, 0x89CFF3); // Light blue ceiling
+    for (y = bottom_pixel; y < HEIGHT; y++)
+        put_pixel(cub, rays->ray_id, y, 0xB99470); // Brown floor
 }
 
-double	get_horizontal_intersection(t_cub *cub, t_rays *rays)
+int ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 {
-	float	x_step;
-	float	y_step;
-	float	inter_x;
-	float	inter_y;
-	int     dircetion;
-	
-	y_step = TILE_SIZE;
-	x_step = TILE_SIZE / tan(normalize_angle(rays->r_angle));
-	inter_x = cub->player_x + (y_step - cub->player_y)
-		* tan(normalize_angle(rays->r_angle));
-	dircetion = check_vertical_intersection(tan(normalize_angle(rays->r_angle)),&x_step,&inter_x);
-	inter_y= floor(cub->player_y / TILE_SIZE) * TILE_SIZE;
-    
-    while (!check_if_wall(cub->data,inter_x,inter_x))
+    int i;
+
+    i = -1;
+    rays->r_angle = cub->p_angle - (FOV / 2);
+    rays->ray_id = 0;
+    while (++i < NUM_RAYS)
     {
-        inter_x += x_step;
-        inter_y += y_step;
+        rays_data(cub, rays);
+        if (rays->h_inter <= rays->v_inter)
+            rays->distance = rays->h_inter;
+        else
+        {
+            rays->flag = 1;
+            rays->distance = rays->v_inter;
+        }
+        render_wall(cub, data, texture, rays);
+        rays->r_angle += FOV / NUM_RAYS;
+        rays->ray_id++;
     }
-    
-	return (calculate_distance(inter_x,cub->player_x,inter_y,cub->player_y));
-
+    return (0);
 }
-
-double	get_vertical_intersection(t_cub *cub, t_rays *rays)
-{
-	float	x_step;
-	float	y_step;
-	float	inter_x;
-	float	inter_y;
-	int     dircetion;
-	
-	x_step = TILE_SIZE;
-	y_step = TILE_SIZE * tan(normalize_angle(rays->r_angle));
-	inter_y = cub->player_y + (x_step - cub->player_x)
-		* tan(normalize_angle(rays->r_angle));
-	dircetion = check_horizontal_intersection(tan(normalize_angle(rays->r_angle)),&y_step,&inter_y);
-	inter_x = floor(cub->player_x / TILE_SIZE) * TILE_SIZE;
-
-    while (!check_if_wall(cub->data,inter_x,inter_x))
-    {
-        inter_x += x_step;
-        inter_y += y_step;
-    }
-    
-	return (calculate_distance(inter_x,cub->player_x,inter_y,cub->player_y));
-}
-
-void	rays_data(t_cub *cub, t_rays *rays)
-{
-	rays->p_x = cub->player_x;
-	rays->p_y = cub->player_y;
-	rays->h_inter = get_horizontal_intersection(cub, rays);
-	rays->v_inter = get_vertical_intersection(cub, rays);
-}
-
-void	render_wall(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
-{
-    
-
-    
-}
-int	ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
-{
-	int	i;
-
-	i = -1;
-	rays->r_angle = cub->p_angle - (FOV / 2);
-	while (++i < NUM_RAYS)
-	{
-		rays_data(cub, rays);
-		if (rays->h_inter <= rays->v_inter)
-			rays->distance = rays->h_inter;
-		else
-		{
-			rays->flag = 1;
-			rays->distance = rays->v_inter;
-		}
-		render_wall(cub, data, texture, rays);
-        rays->r_angle +=  FOV / NUM_RAYS;
-	}
-}
-

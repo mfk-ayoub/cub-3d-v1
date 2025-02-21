@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 04:05:38 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 02:05:20 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void init_rays(t_rays *rays)
 	rays->h_inter = 0;
 	rays->v_inter = 0;
 	rays->distance = 0;
+	rays->ray_id = 0;
+	rays->flag   = 0;
 }

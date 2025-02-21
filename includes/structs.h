@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 05:46:58 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 04:55:34 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,35 @@ typedef struct s_maplist
 	struct s_maplist	*next;
 }						t_maplist;
 
+typedef struct s_horizontal
+{
+	float				x_step;
+	float				y_step;
+	float				inter_x;
+	float				inter_y;
+	int					direction;
+	float				angle;
+}						t_horizontal;
+
+typedef struct s_vertical
+{
+	float				x_step;
+	float				y_step;
+	float				inter_x;
+	float				inter_y;
+	int					direction;
+	float				angle;
+}						t_vertical;
+
+
+typedef struct  s_wall
+{
+	int w_height;
+	int w_top;
+	int w_bottom;
+
+} t_wall;
+
 typedef struct s_rays
 {
 	float				r_x;
@@ -37,6 +66,8 @@ typedef struct s_rays
 	double				h_inter;
 	double				v_inter;
 	int					side;
+	int					flag;
+	int					ray_id;
 	double				distance;
 }						t_rays;
 

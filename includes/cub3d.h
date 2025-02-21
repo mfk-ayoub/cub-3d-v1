@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 05:58:11 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/20 22:42:51 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int			ray_casting(t_cub *cub, t_data *data, t_texture *texture,
 void		init_rays(t_rays *rays);
 float	normalize_angle(float angle);
 int check_if_wall(t_data *data, float x, float y);
+double	calculate_distance(double x1, double x2, double y1, double y2);
 // debug
 
 void		debug(t_cub *cub, t_data *data, t_texture *texture);

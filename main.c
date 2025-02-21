@@ -55,7 +55,6 @@ int main(int ac, char **av)
     {
         if (proccess_input(&data, &cub, av[1]))
             return (1);
-        // debug(&cub, &data, cub.texture);
         if (run_the_program(&data, &cub))
             return (1);
     }

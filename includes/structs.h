@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 04:55:34 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 06:26:16 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ typedef struct s_vertical
 	float				angle;
 }						t_vertical;
 
-
-typedef struct  s_wall
+typedef struct s_wall
 {
-	int w_height;
-	int w_top;
-	int w_bottom;
+	int					w_height;
+	int					w_top;
+	int					w_bottom;
+	int					proj_plane_dist;
+	float				proj_dist;
 
-} t_wall;
+}						t_wall;
 
 typedef struct s_rays
 {

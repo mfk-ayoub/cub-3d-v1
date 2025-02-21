@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:06:03 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 20:08:15 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 06:29:24 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	is_valid_characters(char *line)
 	}
 	return (0);
 }
+
 int	skip_textures(char **line, int fd)
 {
 	while (*line && (!ft_strncmp(*line, "NO ", 3) || !ft_strncmp(*line, "SO ",

@@ -79,10 +79,12 @@ int			check_if_wall(t_data *data, float x, float y);
 double		calculate_distance(double x1, double x2, double y1, double y2);
 double		get_horizontal_intersection(t_cub *cub, t_rays *rays);
 double		get_vertical_intersection(t_cub *cub, t_rays *rays);
-void	adjust_x_step(double angle, float *x_step);
-void	adjust_y_step(double angle, float *y_step);
-int	check_vertical_intersection(double angle, float *x_step, float *inter_x);
-int	check_horizontal_intersection(double angle, float *y_step, float *inter_y);
+void		adjust_x_step(double angle, float *x_step);
+void		adjust_y_step(double angle, float *y_step);
+int			check_vertical_intersection(double angle, float *x_step,
+				float *inter_x);
+int			check_horizontal_intersection(double angle, float *y_step,
+				float *inter_y);
 // debug
 
 void		debug(t_cub *cub, t_data *data, t_texture *texture);

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 04:57:08 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/21 05:37:38 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,10 @@ void rays_data(t_cub *cub, t_rays *rays)
 
 void render_wall(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 {
-    (void)texture;
-    (void)data;
-    double wall_height;
-    int top_pixel;
-    int bottom_pixel;
-    int y;
-    int color;
+	t_wall wall;
 
-    // Calculate wall height with fisheye correction
-    wall_height = (TILE_SIZE / (rays->distance * cos(normalize_angle(rays->r_angle - cub->p_angle)))) *
-                  ((WIDTH / 2) / tan(FOV));
-    top_pixel = (int)(HEIGHT / 2 - wall_height / 2);
-    bottom_pixel = (int)(HEIGHT / 2 + wall_height / 2);
-
-    // Clamp wall bounds to screen
-    if (top_pixel < 0)
-        top_pixel = 0;
-    if (bottom_pixel > HEIGHT)
-        bottom_pixel = HEIGHT;
-
-    // Choose wall color based on intersection type
-    if (rays->flag == 1) // Horizontal
-        color = 0xFF0000; // Red
-    else // Vertical
-        color = 0x0000FF; // Blue
-
-    // Draw the wall with a solid color using the fixed put_pixel
-    for (y = top_pixel; y < bottom_pixel; y++)
-        put_pixel(cub, rays->ray_id, y, color);
-
-    // Draw floor and ceiling (optional for visualization)
-    for (y = 0; y < top_pixel; y++)
-        put_pixel(cub, rays->ray_id, y, 0x89CFF3); // Light blue ceiling
-    for (y = bottom_pixel; y < HEIGHT; y++)
-        put_pixel(cub, rays->ray_id, y, 0xB99470); // Brown floor
+	ft_memset(&wall,0,sizeof(wall));
+	wall.w_height = 
 }
 
 int ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)

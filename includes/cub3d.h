@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 03:45:01 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/22 01:57:56 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int			check_vertical_intersection(double angle, float *x_step,
 				float *inter_x);
 int			check_horizontal_intersection(double angle, float *y_step,
 				float *inter_y);
+int get_colors(char *rgb);
 // debug
 
 void		debug(t_cub *cub, t_data *data, t_texture *texture);

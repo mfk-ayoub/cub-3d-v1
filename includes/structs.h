@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 06:26:16 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/22 01:56:16 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ typedef struct s_data
 	int					col;
 	int					j;
 	int					i;
-	int					f_rgb;
-	int					c_rgb;
+	// int					f_rgb;
+	// int					c_rgb;
 }						t_data;
 
 typedef struct s_cub

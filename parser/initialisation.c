@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 02:05:20 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/22 01:57:05 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	init_data(t_data *data)
 	data->row = 0;
 	data->j = 0;
 	data->i = 0;
-	data->c_rgb = 0;
-	data->f_rgb = 0;
 	return (0);
 }
 

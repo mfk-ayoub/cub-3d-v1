@@ -6,23 +6,38 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 04:46:27 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/22 02:24:19 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
+// int game_loop(t_cub *cub)
+// {
+//     mlx_clear_window(cub->mlx, cub->win);
+   
+//     ray_casting(cub, cub->data, cub->texture, cub->rays);
+//     if (cub->img.img)
+//         mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
+//     return (0);
+// }
+
 int game_loop(t_cub *cub)
 {
+    if (!cub->img.img)
+    {
+        cub->img.img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+        if (!cub->img.img)
+            return (1);
+        cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel,
+                                        &cub->img.line_length, &cub->img.endian);
+    }
     mlx_clear_window(cub->mlx, cub->win);
-   
     ray_casting(cub, cub->data, cub->texture, cub->rays);
-    path_guide(cub,cub->data);
-    if (cub->img.img)
-        mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
+    if (mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0) < 0)
+        printf("Error: Failed to put image to window\n");
     return (0);
 }
-
 int run_the_program(t_data *data, t_cub *cub)
 {
     if (get_player_position(cub, data))

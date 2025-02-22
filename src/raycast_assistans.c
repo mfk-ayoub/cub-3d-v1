@@ -6,19 +6,19 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:42:05 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 03:34:46 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/22 02:43:17 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-float	normalize_angle(float angle)
+float normalize_angle(float angle)
 {
-	if (angle < 0)
-		angle += (2 * PI);
-	if (angle > (2 * PI))
-		angle -= (2 * PI);
-	return (angle);
+    if (angle < 0)
+        angle += (2 * PI);
+    if (angle > (2 * PI))
+        angle -= (2 * PI);
+    return (angle);
 }
 
 void	adjust_x_step(double angle, float *x_step)

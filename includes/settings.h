@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/25 03:53:57 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/25 04:26:19 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@
 # define A 97
 # define S 115
 # define D 100
-
+# define RIGHT 65363
+# define LEFTH 65361
+ 
 # define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
 # define TEXTURE RED "error: " DEFAULT "Textures not found\n"
 # define T_EXTENTASION RED "error: " DEFAULT "Invalid texture extension\n"

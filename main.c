@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/25 04:00:13 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/25 04:24:40 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int is_wall(t_data *data, double x, double y)
     int map_x = (int)x;
     int map_y = (int)y;
 
-    printf("x=%f, y=%f -> map_x=%d, map_y=%d\n", x, y, map_x, map_y);
-    printf("data->row=%d, data->col=%d\n", data->col, data->row);
+    // printf("x=%f, y=%f -> map_x=%d, map_y=%d\n", x, y, map_x, map_y);
+    // printf("data->row=%d, data->col=%d\n", data->col, data->row);
 
     if (map_x < 0 || map_y < 0 || map_x >= data->col || map_y >= data->row)
         return (1);
 
-    printf(" data->map[%d][%d]\n", map_y, map_x);
+    // printf(" data->map[%d][%d]\n", map_y, map_x);
     if (data->map[map_y][map_x] == '1')
         return (1);
 
@@ -81,6 +81,7 @@ int key_release(int key, t_cub *cub)
 
 int key_press(int key, t_cub *cub)
 {
+    printf("key  %c == %d\n",key,key);
     if (key == ESC)
     {
         destroy_all(cub);
@@ -124,6 +125,7 @@ int run_the_program(t_data *data, t_cub *cub)
     cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel,
             &cub->img.line_length, &cub->img.endian);
     mlx_hook(cub->win,2, 1L << 0, key_press, cub);
+    mlx_hook(cub->win, 3, 1L << 1, key_release, cub);
     mlx_hook(cub->win, 3, 1L << 1, key_release, cub);
     mlx_loop_hook(cub->mlx, game_loop, cub);
     mlx_loop(cub->mlx);

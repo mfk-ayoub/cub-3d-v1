@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/25 04:00:56 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/25 04:19:08 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	update(t_cub *cub, t_data *data, t_rays *rays)
 	else
 		rays->wall_x = cub->player_x + rays->distance * rays->dirx;
 	rays->wall_x -= floor(rays->wall_x); 
-	rays_debug(rays);
+	// rays_debug(rays);
 }
 
 t_mlx *get_texture_side(t_rays *rays, t_cub *cub)
@@ -151,9 +151,9 @@ void get_wall_data(t_cub *cub, t_texture *texture, t_rays *rays)
     rays->w_bottom = ((double)HEIGHT / 2) + (rays->w_height / 2);
 
     if (rays->w_top < 0)
-        rays->w_top = 10;
+        rays->w_top = 0;
     if (rays->w_bottom >= HEIGHT)
-        rays->w_bottom = HEIGHT - 20;
+        rays->w_bottom = HEIGHT - 1;
 
 }
 

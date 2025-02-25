@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_programm.c                                 :+:      :+:    :+:   */
+/*   destroy_program.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:55:10 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 20:21:28 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/25 00:11:25 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,50 @@ void	ft_mapclear(t_maplist **map)
 	}
 	*map = NULL;
 }
+
+void destroy_data(t_data *data, t_texture *texture)
+{
+    if (texture)
+    {
+        if (texture->rgb)
+        {
+            free(texture->rgb->f);
+            free(texture->rgb->c);
+            free(texture->rgb);
+        }
+        free(texture->no);
+        free(texture->so);
+        free(texture->we);
+        free(texture->ea);
+        free(texture);
+    }
+    if (data)
+    {
+        free_array(data->map);
+        data->map = NULL;
+    }
+}
+
+void destroy_all(t_cub *cub)
+{
+    if (!cub) 
+        return;
+
+    if (cub->mlx && cub->img.img)
+        mlx_destroy_image(cub->mlx, cub->img.img);
+
+    if (cub->mlx && cub->win)
+        mlx_destroy_window(cub->mlx, cub->win);
+
+    if (cub->mlx)
+    {
+        mlx_destroy_display(cub->mlx);
+        free(cub->mlx);
+    }
+    destroy_data(cub->data, cub->texture);
+    // if (cub->rays)
+    free(cub->rays);
+	free(cub);
+    exit(0);
+}
+

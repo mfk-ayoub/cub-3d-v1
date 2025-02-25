@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/22 01:56:16 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/25 02:11:15 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,51 +25,28 @@ typedef struct s_maplist
 	struct s_maplist	*next;
 }						t_maplist;
 
-typedef struct s_horizontal
-{
-	float				x_step;
-	float				y_step;
-	float				inter_x;
-	float				inter_y;
-	int					direction;
-	float				angle;
-}						t_horizontal;
-
-typedef struct s_vertical
-{
-	float				x_step;
-	float				y_step;
-	float				inter_x;
-	float				inter_y;
-	int					direction;
-	float				angle;
-}						t_vertical;
-
-typedef struct s_wall
-{
-	int					w_height;
-	int					w_top;
-	int					w_bottom;
-	int					proj_plane_dist;
-	float				proj_dist;
-
-}						t_wall;
-
 typedef struct s_rays
 {
-	float				r_x;
-	float				r_y;
-	float				p_x;
-	float				p_y;
+	int					mapx;
+	int					mapy;
+	int					stepx;
+	int					stepy;
+	double				deltax;
+	double				deltay;
 	double				r_angle;
-	double				dx;
-	double				dy;
-	double				h_inter;
-	double				v_inter;
+	double					dirx;
+	double					diry;
 	int					side;
-	int					flag;
-	int					ray_id;
+	double				side_dist_x;
+	double				side_dist_y;
+	int					ddi;
+	double				anglestep;
+	int					find_wall;
 	double				distance;
+	double				wall_x;
+	double				w_height;
+	double				w_top;
+	double				w_bottom;
 }						t_rays;
 
 typedef struct s_mlx
@@ -79,6 +56,8 @@ typedef struct s_mlx
 	int					bits_per_pixel;
 	int					line_length;
 	int					endian;
+	int					width;
+	int					height;
 }						t_mlx;
 
 typedef struct s_rgb
@@ -94,6 +73,12 @@ typedef struct s_texture
 	char				*we;
 	char				*ea;
 	t_rgb				*rgb;
+	t_mlx				no_texture;
+	t_mlx				so_texture;
+	t_mlx				we_texture;
+	t_mlx				ea_texture;
+	int				c_color;
+	int				f_color;
 }						t_texture;
 
 typedef struct s_data
@@ -103,8 +88,6 @@ typedef struct s_data
 	int					col;
 	int					j;
 	int					i;
-	// int					f_rgb;
-	// int					c_rgb;
 }						t_data;
 
 typedef struct s_cub
@@ -118,11 +101,13 @@ typedef struct s_cub
 	float				player_y;
 	float				p_angle;
 	int					pixel_size;
+	bool					key_w;
+	bool					key_s;
+	bool					key_a;
+	bool					key_d;
 	t_data				*data;
 	t_texture			*texture;
 	t_rays				*rays;
-	int					tex_width;
-	int					tex_height;
 }						t_cub;
 
 #endif

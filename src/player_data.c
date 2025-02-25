@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:15:12 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/22 02:46:17 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/24 03:58:21 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int	check_player_errors(char **map, int row, int col, int *player_count)
 	return (0);
 }
 
+
 void set_player_data(t_cub *cub, t_data *data, int row, int col)
 {
-    cub->player_x = (col * TILE_SIZE) + TILE_SIZE / 2;
-    cub->player_y = (row * TILE_SIZE) + TILE_SIZE / 2;
+    cub->player_x = col + 0.5; 
+    cub->player_y = row + 0.5;
     if (data->map[row][col] == 'N')
         cub->p_angle = PI / 2;
     else if (data->map[row][col] == 'S')
@@ -41,12 +42,11 @@ void set_player_data(t_cub *cub, t_data *data, int row, int col)
         cub->p_angle = PI;
     data->map[row][col] = '0';
 }
-
 int	get_player_position(t_cub *cub, t_data *data)
 {
-	int row;
-	int col;
-	int player_count;
+	int	row;
+	int	col;
+	int	player_count;
 
 	player_count = 0;
 	row = 0;

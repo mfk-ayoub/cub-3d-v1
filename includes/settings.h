@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/21 04:59:02 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/25 03:53:57 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,18 @@
 # define DEFAULT "\033[0m"
 # define PI 3.141592653589793
 # define FOV 60 * (PI / 180.0)
-# define TILE_SIZE 30
 # define SCALE 0.5
 # define OFFSET 4
-# define MOVESTEP 0.5
+# define MOVESTEP 0.45
 # define RADIUS 4
 # define NUM_RAYS 1200
+
+
+# define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
 
 # define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
 # define TEXTURE RED "error: " DEFAULT "Textures not found\n"
@@ -44,4 +50,5 @@
 # define MLX_ERROR RED "error: " DEFAULT "in mlx\n"
 # define NO_FOUND RED "error: " DEFAULT "No player found on the map.\n"
 # define FOUND_DUP RED "error: " DEFAULT "Multiple player positions found.\n"
+# define TEXTURE_FAILD RED "error: " DEFAULT "error in laod texture\n"
 #endif

@@ -6,113 +6,189 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/22 02:46:48 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/25 04:00:56 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 
-
-
-void	draw_floor_ceiling(t_cub *cub,t_rays *rays, t_rgb *rgb, t_wall *wall)
+void rays_debug(t_rays *rays)
 {
-	int f_rgb;
-	int c_rgb;
-	int x;
+	printf(" ray distance %f\n",rays->distance);
+	printf(" ray ddi %d\n",rays->ddi);
+	printf("rays stepx %d and stepy %d\n",rays->stepx, rays->stepy);
+	printf("rays sidesdisx %f and sidedisy %f\n",rays->side_dist_x, rays->side_dist_y);
+	printf("rays mapx %d and mapy %d\n",rays->mapx, rays->mapy);
+	printf("rays dirx %f and diry %f\n",rays->diry, rays->diry);
+	printf(" ray angle %f\n",rays->r_angle);
+}
+void	get_distance_to_wall(t_rays *rays, t_data *data, t_cub *cub)
+{
+	rays->find_wall = 0;
+    while (!rays->find_wall)
+    {
+        if (rays->side_dist_x < rays->side_dist_y)
+        {
+            rays->side_dist_x += rays->deltax;
+            rays->mapx += rays->stepx;
+            rays->side = 0;
+        }
+        else
+        {
+            rays->side_dist_y += rays->deltay;
+            rays->mapy += rays->stepy;
+            rays->side = 1;
+        }
+        if (rays->mapx < 0 || rays->mapx >= data->col ||
+            rays->mapy < 0 || rays->mapy >= data->row)
+        {
+            rays->find_wall = 1;
+            break;
+        }
+        if (data->map[rays->mapy][rays->mapx] == '1')
+            rays->find_wall = 1;
+    }
+	if (rays->side == 0)
+    	rays->distance = (rays->mapx - cub->player_x + (1 - rays->stepx) / 2) / rays->dirx;
+	else
+    	rays->distance = (rays->mapy - cub->player_y + (1 - rays->stepy) / 2) / rays->diry;
+	rays->distance *= cos(cub->p_angle - rays->r_angle);
 	
-	f_rgb = get_colors(rgb->f);
-	c_rgb = get_colors(rgb->c);
-	x = wall->w_bottom;
-	while (x < HEIGHT)
-		put_pixel(cub, rays->ray_id, x++, f_rgb);
-	x = 0;
-	while (x < wall->w_top)
-		put_pixel(cub, rays->ray_id, x++, c_rgb); 
 }
 
-int	get_color(t_cub *cub, t_rays  *rays)	// get the color of the wall
+void get_delta(t_rays *rays)
 {
-	(void)cub;
-	rays->r_angle= normalize_angle(rays->r_angle); // normalize the angle
-	if (rays->flag == 0)
+    if (rays->dirx == 0 && rays->diry == 0) 
+    {
+        rays->dirx = 0.00001;
+        rays->diry = 0.00001;
+    }
+    if (rays->dirx == 0)
+        rays->deltax = INFINITY; 
+    else
+        rays->deltax = fabs(1 / rays->dirx);
+
+    if (rays->diry == 0)
+        rays->deltay = INFINITY; 
+    else
+        rays->deltay = fabs(1 / rays->diry);
+}
+
+
+
+void	get_steps_side_dis(t_rays *rays, t_cub *cub)
+{
+	if (rays->dirx < 0)
 	{
-		if (rays->r_angle> PI / 2 && rays->r_angle < 3 * (PI / 2))
-			return (0xB5B5B5FF); // west wall
-		else
-			return (0xB5B5B5FF); // east wall
+		rays->stepx = -1;
+		rays->side_dist_x = (cub->player_x - rays->mapx) * rays->deltax;
 	}
 	else
 	{
-		if (rays->r_angle > 0 && rays->r_angle < PI)
-			return (0xF5F5F5FF); // south wall
-		else
-			return (0xF5F5F5FF); // north wall
+		rays->stepx = 1;
+		rays->side_dist_x = (rays->mapx + 1.0 - cub->player_x) * rays->deltax;
+	}
+	if (rays->diry < 0)
+	{
+		rays->stepy = -1;
+		rays->side_dist_y = (cub->player_y - rays->mapy) * rays->deltay;
+	}
+	else
+	{
+		rays->stepy = 1;
+		rays->side_dist_y = (rays->mapy + 1.0 - cub->player_y) * rays->deltay;
 	}
 }
 
-void rendring_wall(t_cub *cub, t_rays *rays, t_wall *wall)
+void	update(t_cub *cub, t_data *data, t_rays *rays)
 {
-    int y = wall->w_top;
-	int color;
-
-	color = get_color(cub,rays);
-    while (y < wall->w_bottom)
-    {
-        if (y >= 0 && y < HEIGHT && rays->ray_id >= 0 && rays->ray_id < WIDTH)
-            put_pixel(cub, rays->ray_id, y, color); 
-        y++;
-    }
-
-}
-
-void render_wall(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
-{
-    (void)data;
-    t_wall wall;
+	rays->mapx = (int)cub->player_x;
+	rays->mapy = (int)cub->player_y;
 	
-    ft_memset(&wall, 0, sizeof(wall));
-    wall.proj_dist = rays->distance * cos(rays->r_angle - cub->p_angle);
-    if (wall.proj_dist < 0.1)
-        wall.proj_dist = 0.1;
-    wall.proj_plane_dist = (WIDTH / 2) / tan(FOV / 2); 
-    wall.w_height = (TILE_SIZE / wall.proj_dist) * wall.proj_plane_dist;
-    if (wall.w_height < 1)
-        wall.w_height = 1;
-    wall.w_top = (HEIGHT / 2) - (wall.w_height / 2);
-    wall.w_bottom = (HEIGHT / 2) + (wall.w_height / 2);
-    if (wall.w_top < 0)
-        wall.w_top = 0;
-    if (wall.w_bottom >= HEIGHT)
-        wall.w_bottom = HEIGHT - 1;
-
-    rendring_wall(cub, rays, &wall);
-    draw_floor_ceiling(cub, rays, texture->rgb, &wall);
+	rays->dirx = cos(rays->r_angle);
+	rays->diry = sin(rays->r_angle);
+	get_delta(rays);
+	get_steps_side_dis(rays, cub);
+	get_distance_to_wall(rays, data, cub);
+	if (rays->side == 0)
+    	rays->wall_x = cub->player_y + rays->distance * rays->diry;
+	else
+		rays->wall_x = cub->player_x + rays->distance * rays->dirx;
+	rays->wall_x -= floor(rays->wall_x); 
+	rays_debug(rays);
 }
 
-int ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
+t_mlx *get_texture_side(t_rays *rays, t_cub *cub)
 {
-    int i;
+	t_mlx *texture;
 
-    i = -1;
-    rays->r_angle = normalize_angle(cub->p_angle - (FOV / 2));
-    rays->ray_id = 0;
-    while (++i < NUM_RAYS)
-    {
-        rays->p_x = cub->player_x;
-        rays->p_y = cub->player_y;
-        rays->h_inter = get_horizontal_intersection(cub, rays);
-        rays->v_inter = get_vertical_intersection(cub, rays);
-        if (rays->h_inter <= rays->v_inter)
-            rays->distance = rays->h_inter;
-        else
-        {
-            rays->flag = 1;
-            rays->distance = rays->v_inter;
-        }
-        render_wall(cub, data, texture, rays);
-        rays->r_angle = normalize_angle(rays->r_angle + FOV / NUM_RAYS);
-        rays->ray_id++;
-    }
-    return (0);
+	if (rays->side == 0)
+	{
+		if (rays->stepx > 0)
+			texture = &cub->texture->ea_texture; 
+		else
+			texture = &cub->texture->we_texture; 
+	}
+	else
+	{
+		if (rays->stepy > 0)
+			texture = &cub->texture->so_texture; 
+		else
+			texture = &cub->texture->no_texture;
+	}
+	return (texture);
+
 }
+
+void get_wall_data(t_cub *cub, t_texture *texture, t_rays *rays)
+{
+	
+	(void)texture;
+	(void)cub;
+    rays->w_height = (double)HEIGHT / rays->distance;
+    rays->w_top = ((double)HEIGHT / 2) - (rays->w_height / 2);
+    rays->w_bottom = ((double)HEIGHT / 2) + (rays->w_height / 2);
+
+    if (rays->w_top < 0)
+        rays->w_top = 10;
+    if (rays->w_bottom >= HEIGHT)
+        rays->w_bottom = HEIGHT - 20;
+
+}
+
+void rendring_all(t_cub *cub, t_texture *texture, t_rays *rays)
+{
+	int  i;
+
+	i = -1;
+	// t_mlx		*img;
+	texture->f_color = get_colors(texture->rgb->f);
+	texture->c_color = get_colors(texture->rgb->c);
+	get_wall_data(cub, texture, rays);
+	while (++i < rays->w_top)
+		put_pixel(cub,rays->ddi,i,texture->c_color);	
+
+	while (i <= rays->w_bottom)
+		// int color = get_pixel_color(img,rays->ddi,i)
+		put_pixel(cub, rays->ddi, i++, 0x505050);
+
+	while (++i < HEIGHT)
+		put_pixel(cub,rays->ddi,i,texture->f_color);
+}
+int	ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
+{
+	rays->ddi = 0;
+	rays->r_angle = cub->p_angle - (FOV / 2);
+	while (rays->ddi < NUM_RAYS)
+	{
+		update(cub, data, rays);
+		
+		rendring_all(cub, texture, rays);
+		rays->ddi++;
+		rays->r_angle += (FOV / NUM_RAYS);
+
+	}
+	return (0);
+}
+

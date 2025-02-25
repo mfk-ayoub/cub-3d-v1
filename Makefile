@@ -1,7 +1,7 @@
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./includes -I$(minilibx_src) -g3 -g
+CFLAGS = -Wall -Wextra -Werror  -I./includes -I$(minilibx_src) -g3 -g
 
 minilibx_src = ./minilibx-linux/
 minilibx = $(minilibx_src)libmlx_Linux.a

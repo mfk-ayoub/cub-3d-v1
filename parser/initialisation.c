@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/22 01:57:05 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/24 23:18:50 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	init_cub(t_cub *cub, t_data *data, t_texture *texture)
 	cub->player_x = 0;
 	cub->player_y = 0;
 	cub->texture = texture;
-	cub->tex_height = 0;
-	cub->tex_width = 0;
+	cub->key_a = false;
+	cub->key_w = false;
+	cub->key_s = false;
+	cub->key_d = false;
 	return (0);
 }
 
@@ -53,17 +55,25 @@ int	init_texture(t_texture **texture)
 
 void init_rays(t_rays *rays)
 {
-	rays->r_angle = 0;
-	rays->dx = 0;
-	rays->dy = 0;
-	rays->r_x = 0;
-	rays->r_y = 0;
+	rays->mapx = 0;
+	rays->mapy = 0;
+	rays->stepx = 0;
+	rays->stepy = 0;
+	rays->deltax = 0.0;
+	rays->deltay = 0.0;
+	rays->r_angle = 0.0;
+	rays->dirx = 0;
+	rays->diry = 0;
 	rays->side = 0;
-	rays->p_x = 0;
-	rays->p_y = 0; 
-	rays->h_inter = 0;
-	rays->v_inter = 0;
-	rays->distance = 0;
-	rays->ray_id = 0;
-	rays->flag   = 0;
+	rays->side_dist_x = 0.0;
+	rays->side_dist_y = 0.0;
+	rays->ddi = 0;
+	rays->anglestep = 0.0;
+	rays->find_wall = 0;
+	rays->distance = 0.0;
+	rays->wall_x = 0.0;
+	rays->w_height = 0.0;
+	rays->w_top = 0.0;
+	rays->w_bottom = 0.0;
 }
+

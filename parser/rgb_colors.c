@@ -26,24 +26,22 @@ int	rgb_to_int(int red, int green, int blue)
 	return (result);
 }
 
-
-int get_colors(char *rgb)
+int	get_colors(char *rgb)
 {
-    char **colors;
-    int red, green, blue;
-    int result;
+	char	**colors;
+	int		result;
 
-    colors = ft_split(rgb, ',');
-    if (!colors || !colors[0] || !colors[1] || !colors[2])
-    {
-        free_array(colors); 
-        return (-1);
-    }
-    red = ft_atoi(colors[0]);
-    green = ft_atoi(colors[1]);
-    blue = ft_atoi(colors[2]);
-
-    free_array(colors);
-    result = rgb_to_int(red, green, blue);
-    return (result);
+	int red, green, blue;
+	colors = ft_split(rgb, ',');
+	if (!colors || !colors[0] || !colors[1] || !colors[2])
+	{
+		free_array(colors);
+		return (-1);
+	}
+	red = ft_atoi(colors[0]);
+	green = ft_atoi(colors[1]);
+	blue = ft_atoi(colors[2]);
+	free_array(colors);
+	result = rgb_to_int(red, green, blue);
+	return (result);
 }

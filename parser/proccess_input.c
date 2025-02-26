@@ -99,6 +99,6 @@ int	proccess_input(t_data *data, t_cub *cub, char *path)
 	}
 	if (start_parser(texture, data, path, fd))
 		return (1);
-	debug(cub,data,texture);
+	debug(cub, data, texture);
 	return (0);
 }

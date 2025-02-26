@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/25 02:22:54 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:54:02 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,23 @@ int			ray_casting(t_cub *cub, t_data *data, t_texture *texture,
 				t_rays *rays);
 void		init_rays(t_rays *rays);
 // double		normalize_angle(double angle);
-float	normalize_angle(float angle);
-// int get_colors(char *rgb);
-// debug
-int get_colors(char *rgb);
-void destory_data(t_data *data, t_texture *texture);
-void    destroy_all(t_cub *cub);
-int get_pixel_color(t_mlx *texture, int x, int y);
-void		debug(t_cub *cub, t_data *data, t_texture *texture);
+float		normalize_angle(float angle);
 
+int			get_colors(char *rgb);
+void		destroy_all(t_cub *cub);
+void		debug(t_cub *cub, t_data *data, t_texture *texture);
+void		move_forward(t_cub *cub, double *new_x, double *new_y);
+void		move_backward(t_cub *cub, double *new_x, double *new_y);
+void		move_left(t_cub *cub, double *new_x, double *new_y);
+void		move_right(t_cub *cub, double *new_x, double *new_y);
+void		get_delta(t_rays *rays);
+int			get_pixel_color(t_mlx texture, int x, int y);
+t_mlx		load_texture(t_cub *cub, char *texture_path);
+t_mlx		*get_texture_side(t_rays *rays, t_cub *cub);
+void		get_steps_side_dis(t_rays *rays, t_cub *cub);
+void		get_distance_to_wall(t_rays *rays, t_data *data, t_cub *cub);
+void		init_textures(t_cub *cub);
+int			key_release(int key, t_cub *cub);
+int			key_press(int key, t_cub *cub);
+int is_wall(t_data *data, double x, double y);
 #endif

@@ -12,8 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-
-
 int	get_biggest_line(t_maplist *head)
 {
 	int	big_line;

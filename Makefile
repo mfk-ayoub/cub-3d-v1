@@ -1,12 +1,11 @@
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror  -I./includes -I$(minilibx_src) -g3 -g
+CFLAGS = -Wall -Wextra -Werror  -I./includes -I/usr/local/lib -I./include/ -g3 -g
 
-minilibx_src = ./minilibx-linux/
-minilibx = $(minilibx_src)libmlx_Linux.a
 
-LIBS = -L$(minilibx_src) -lmlx_Linux -lXext -lX11 -lm -lz
+
+LIBS = -lmlx_Linux -lXext -lX11 -lm -lz
 
 BINDIR = bin
 DIRS = . parser src assistants
@@ -16,13 +15,11 @@ OBJ = $(patsubst %.c, $(BINDIR)/%.o, $(notdir $(SRC)))
 
 vpath %.c $(DIRS)
 
-all: $(minilibx) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ) | $(BINDIR)
 	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBS)
 
-$(minilibx):
-	make -C $(minilibx_src)
 
 $(BINDIR):
 	mkdir -p $(BINDIR)
@@ -33,7 +30,7 @@ $(BINDIR)/%.o: %.c | $(BINDIR)
 
 clean:
 	rm -rf $(BINDIR)
-	make -C $(minilibx_src) clean
+	
 
 fclean: clean
 	rm -f $(NAME)

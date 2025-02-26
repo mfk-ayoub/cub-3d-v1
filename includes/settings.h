@@ -6,16 +6,16 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/25 04:26:19 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:25:41 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
-# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
+# include <mlx.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -30,10 +30,10 @@
 # define FOV 60 * (PI / 180.0)
 # define SCALE 0.5
 # define OFFSET 4
-# define MOVESTEP 0.45
+# define ROTATION 0.01
+# define MOVESTEP 0.02
 # define RADIUS 4
 # define NUM_RAYS 1200
-
 
 # define ESC 65307
 # define W 119
@@ -41,8 +41,8 @@
 # define S 115
 # define D 100
 # define RIGHT 65363
-# define LEFTH 65361
- 
+# define LEFT 65361
+
 # define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
 # define TEXTURE RED "error: " DEFAULT "Textures not found\n"
 # define T_EXTENTASION RED "error: " DEFAULT "Invalid texture extension\n"

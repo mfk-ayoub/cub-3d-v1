@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/25 02:11:15 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:45:45 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_rays
 	double				deltax;
 	double				deltay;
 	double				r_angle;
-	double					dirx;
-	double					diry;
+	double				dirx;
+	double				diry;
 	int					side;
 	double				side_dist_x;
 	double				side_dist_y;
@@ -77,8 +77,8 @@ typedef struct s_texture
 	t_mlx				so_texture;
 	t_mlx				we_texture;
 	t_mlx				ea_texture;
-	int				c_color;
-	int				f_color;
+	int					c_color;
+	int					f_color;
 }						t_texture;
 
 typedef struct s_data
@@ -89,6 +89,15 @@ typedef struct s_data
 	int					j;
 	int					i;
 }						t_data;
+
+typedef struct s_wall
+{
+	int					tex_x;
+	int					tex_y;
+	double				step;
+	double				tex_pos;
+	int					color;
+}						t_wall;
 
 typedef struct s_cub
 {
@@ -101,10 +110,12 @@ typedef struct s_cub
 	float				player_y;
 	float				p_angle;
 	int					pixel_size;
-	bool					key_w;
-	bool					key_s;
-	bool					key_a;
-	bool					key_d;
+	bool				key_w;
+	bool				key_s;
+	bool				key_a;
+	bool				key_d;
+	bool				key_right;
+	bool				key_left;
 	t_data				*data;
 	t_texture			*texture;
 	t_rays				*rays;

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/24 23:18:50 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:47:39 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	init_cub(t_cub *cub, t_data *data, t_texture *texture)
 	cub->key_w = false;
 	cub->key_s = false;
 	cub->key_d = false;
+	cub->key_left = false;
+	cub->key_right = false;
 	return (0);
 }
 
@@ -53,7 +55,7 @@ int	init_texture(t_texture **texture)
 	return (0);
 }
 
-void init_rays(t_rays *rays)
+void	init_rays(t_rays *rays)
 {
 	rays->mapx = 0;
 	rays->mapy = 0;
@@ -77,3 +79,10 @@ void init_rays(t_rays *rays)
 	rays->w_bottom = 0.0;
 }
 
+void	init_textures(t_cub *cub)
+{
+	cub->texture->no_texture = load_texture(cub, cub->texture->no);
+	cub->texture->so_texture = load_texture(cub, cub->texture->so);
+	cub->texture->we_texture = load_texture(cub, cub->texture->we);
+	cub->texture->ea_texture = load_texture(cub, cub->texture->ea);
+}

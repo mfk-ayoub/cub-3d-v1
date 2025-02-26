@@ -26,3 +26,14 @@ void debug(t_cub *cub,t_data *data , t_texture *texture)
 	printf("c : %s\n", texture->rgb->c);
 	printf("f : %s\n", texture->rgb->f);
 }
+
+void rays_debug(t_rays *rays)
+{
+	printf(" ray distance %f\n",rays->distance);
+	printf(" ray ddi %d\n",rays->ddi);
+	printf("rays stepx %d and stepy %d\n",rays->stepx, rays->stepy);
+	printf("rays sidesdisx %f and sidedisy %f\n",rays->side_dist_x, rays->side_dist_y);
+	printf("rays mapx %d and mapy %d\n",rays->mapx, rays->mapy);
+	printf("rays dirx %f and diry %f\n",rays->diry, rays->diry);
+	printf(" ray angle %f\n",rays->r_angle);
+}

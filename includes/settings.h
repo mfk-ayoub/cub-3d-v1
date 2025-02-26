@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 00:25:41 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 05:25:20 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,10 @@
 # define DEFAULT "\033[0m"
 # define PI 3.141592653589793
 # define FOV 60 * (PI / 180.0)
-# define SCALE 0.5
 # define OFFSET 4
 # define ROTATION 0.01
 # define MOVESTEP 0.02
-# define RADIUS 4
 # define NUM_RAYS 1200
-
 # define ESC 65307
 # define W 119
 # define A 97
@@ -42,7 +39,7 @@
 # define D 100
 # define RIGHT 65363
 # define LEFT 65361
-
+# define FRAMES 4
 # define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
 # define TEXTURE RED "error: " DEFAULT "Textures not found\n"
 # define T_EXTENTASION RED "error: " DEFAULT "Invalid texture extension\n"

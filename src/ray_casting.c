@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 01:03:46 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 02:27:33 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	update(t_cub *cub, t_data *data, t_rays *rays)
 {
+	double	angle;
+
+	angle = normalize_angle(rays->r_angle);
 	rays->mapx = (int)cub->player_x;
 	rays->mapy = (int)cub->player_y;
-	rays->dirx = cos(rays->r_angle);
-	rays->diry = sin(rays->r_angle);
+	rays->dirx = cos(angle);
+	rays->diry = sin(angle);
 	get_delta(rays);
 	get_steps_side_dis(rays, cub);
 	get_distance_to_wall(rays, data, cub);

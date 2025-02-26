@@ -6,19 +6,21 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:42:05 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 01:00:59 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 02:56:35 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+#define COLLISION_RADIUS 0.2
 
 int	is_wall(t_data *data, double x, double y)
 {
 	int	map_x;
 	int	map_y;
 
-	map_x = (int)x;
-	map_y = (int)y;
+	map_x = (int)(x + COLLISION_RADIUS);
+	map_y = (int)(y + COLLISION_RADIUS);
 	if (map_x < 0 || map_y < 0 || map_x >= data->col || map_y >= data->row)
 		return (1);
 	if (data->map[map_y][map_x] == '1')

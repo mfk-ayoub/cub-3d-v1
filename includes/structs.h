@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 00:45:45 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 04:42:20 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,18 @@ typedef struct s_wall
 	double				tex_pos;
 	int					color;
 }						t_wall;
+
+typedef struct s_minimap
+{
+	double				ray_x;
+	double				ray_y;
+	double				delta_x;
+	double				delta_y;
+	double				ray_angle;
+	int					map_x;
+	int					map_y;
+	int					color;
+}						t_minimap;
 
 typedef struct s_cub
 {

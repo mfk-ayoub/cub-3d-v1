@@ -1,7 +1,7 @@
-NO textures/2.xpm
-SO textures/3.xpm
-WE textures/5.xpm
-EA textures/4.xpm
+NO textures/nazi/2.xpm
+SO textures/nazi/3.xpm
+WE textures/nazi/5.xpm
+EA textures/nazi/4.xpm
 
 F 220,100,0
 C 225,30,0

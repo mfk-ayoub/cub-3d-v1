@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 00:13:37 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/22 02:03:42 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 05:33:55 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ int	rgb_to_int(int red, int green, int blue)
 int	get_colors(char *rgb)
 {
 	char	**colors;
+	int		red;
+	int		green;
+	int		blue;
 	int		result;
 
-	int red, green, blue;
 	colors = ft_split(rgb, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2])
 	{

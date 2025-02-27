@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 02:27:33 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:30:37 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,17 @@ void	update(t_cub *cub, t_data *data, t_rays *rays)
 	rays->wall_x -= floor(rays->wall_x);
 }
 
-void	get_wall_data(t_rays *rays)
+void	get_wall_data(t_rays *rays, t_cub *cub)
 {
-	rays->w_height = (double)HEIGHT / rays->distance;
+	rays->w_height = (double)HEIGHT / (rays->distance * cos(cub->p_angle - rays->r_angle));
 	rays->w_top = ((double)HEIGHT / 2) - (rays->w_height / 2);
 	rays->w_bottom = ((double)HEIGHT / 2) + (rays->w_height / 2);
-	if (rays->w_top < 0)
-		rays->w_top = 0;
 	if (rays->w_bottom >= HEIGHT)
 		rays->w_bottom = HEIGHT - 1;
 }
 
 void	calculate_texture_coords(t_rays *rays, t_mlx *img, int i, t_wall *wall)
 {
-	wall->tex_x = (int)(rays->wall_x * (double)img->width);
 	if (rays->w_height > 0)
 		wall->step = (double)img->height / rays->w_height;
 	else
@@ -73,10 +70,11 @@ void	rendring_all(t_cub *cub, t_texture *texture, t_rays *rays)
 	i = -1;
 	texture->f_color = get_colors(texture->rgb->f);
 	texture->c_color = get_colors(texture->rgb->c);
-	get_wall_data(rays);
+	get_wall_data(rays,cub);
 	while (++i < rays->w_top)
 		put_pixel(cub, rays->ddi, i, texture->c_color);
 	img = get_texture_side(rays, cub);
+	wall.tex_x = (int)(rays->wall_x * (double)img->width);
 	while (i <= rays->w_bottom)
 	{
 		calculate_texture_coords(rays, img, i, &wall);

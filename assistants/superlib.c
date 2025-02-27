@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:24:43 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/20 02:58:24 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 05:38:44 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	check_space(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\n');
 }
+
 void	*ft_memset(void *ptr, int x, size_t n)
 {
 	unsigned char	*str;

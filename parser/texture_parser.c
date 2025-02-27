@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   texture_parser.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
+/*                                                    +:+         +:+     */
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:45:06 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 19:54:35 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/27 02:34:01 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	texture_path(t_texture *texture, char *line, char *trimmed)
 int	parse_texture_line(t_texture *texture, char *line)
 {
 	char	*trimmed;
+	int		ret;
 
 	if (line[0] == 'F')
 		trimmed = ft_strtrim(&line[2], "\n");
@@ -73,13 +74,20 @@ int	parse_texture_line(t_texture *texture, char *line)
 	else
 		trimmed = ft_strtrim(&line[3], "\n");
 	if (!trimmed)
-		return (1);
-	if (texture_path(texture, line, trimmed))
 	{
-		(free(line), free(trimmed));
+		free(line);
 		return (1);
 	}
-	return (0);
+	ret = texture_path(texture, line, trimmed);
+	if (ret == 0)
+	{
+		free(line);
+		return (0);
+	}
+	free(line);
+	if (ret == 1)
+		free(trimmed);
+	return (1);
 }
 
 int	read_texture_lines(t_texture *texture, int fd)
@@ -89,8 +97,7 @@ int	read_texture_lines(t_texture *texture, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line == NULL || ft_strlen(line) == 0 || ft_strspn(line,
-				" \t\n") == ft_strlen(line))
+		if (line == NULL || ft_strlen(line) == 0 || ft_strspn(line, " \t\n") == ft_strlen(line))
 		{
 			free(line);
 			line = get_next_line(fd);
@@ -101,9 +108,9 @@ int	read_texture_lines(t_texture *texture, int fd)
 			free(line);
 			break ;
 		}
-		if (parse_texture_line(texture, line) != 0)
+		if (parse_texture_line(texture, line))
 			return (1);
-		free(line);
+
 		line = get_next_line(fd);
 	}
 	return (0);
@@ -125,5 +132,4 @@ int	valid_texture(t_texture *texture, int fd)
 		return (printf(COLORS_ERROR), 1);
 	else
 		return (0);
-	return (0);
 }

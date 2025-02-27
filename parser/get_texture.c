@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:46:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/16 19:46:21 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 05:35:33 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ int	check_colors(t_texture *texture)
 		return (1);
 	return (0);
 }
+
 int	parse_texture_extension(t_texture *texture)
 {
-	int fd;
+	int	fd;
 
 	fd = open(texture->ea, O_RDONLY);
 	if (fd < 0)

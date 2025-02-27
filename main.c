@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 05:17:02 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/27 03:09:58 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,15 @@ int	main(int ac, char **av)
 	t_cub	*cub;
 
 	cub = malloc(sizeof(t_cub));
+    ft_memset(cub, 0, sizeof(t_cub));
 	ft_memset(&data, 0, sizeof(t_data));
 	if (ac == 2)
 	{
 		if (proccess_input(&data, cub, av[1]))
+		{
+			destroy_all(cub);
 			return (1);
+		}
 		if (run_the_program(&data, cub))
 			return (1);
 	}

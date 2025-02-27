@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/08 10:21:09 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 05:25:20 by ayel-mou         ###   ########.fr       */
+/*   Created: 2025/02/26 05:42:17 by ayel-mou          #+#    #+#             */
+/*   Updated: 2025/02/27 13:08:44 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define RED "\033[31m"
 # define DEFAULT "\033[0m"
 # define PI 3.141592653589793
-# define FOV 60 * (PI / 180.0)
+# define FOV 1.0471975512
 # define OFFSET 4
 # define ROTATION 0.01
 # define MOVESTEP 0.02
@@ -40,14 +40,15 @@
 # define RIGHT 65363
 # define LEFT 65361
 # define FRAMES 4
-# define EXTENTASION RED "error: " DEFAULT "Invalid extension\n"
-# define TEXTURE RED "error: " DEFAULT "Textures not found\n"
-# define T_EXTENTASION RED "error: " DEFAULT "Invalid texture extension\n"
-# define COLORS_ERROR RED "error: " DEFAULT "Invalid colours\n"
-# define INVALID_MAP RED "error: " DEFAULT "Invalid Map\n"
-# define FILE_ERROR RED "error: " DEFAULT "Error in open file\n"
-# define MLX_ERROR RED "error: " DEFAULT "in mlx\n"
-# define NO_FOUND RED "error: " DEFAULT "No player found on the map.\n"
-# define FOUND_DUP RED "error: " DEFAULT "Multiple player positions found.\n"
-# define TEXTURE_FAILD RED "error: " DEFAULT "error in laod texture\n"
+# define EXTENTASION "\033[31m error: \033[0m Invalid extension\n"
+# define TEXTURE "\033[31m  error:  \033[0m  Textures not found\n"
+# define T_EXTENTASION "\033[31m  error:  \033[0m  Invalid texture extension\n"
+# define COLORS_ERROR "\033[31m  error:  \033[0m  Invalid colours\n"
+# define INVALID_MAP "\033[31m  error:  \033[0m  Invalid Map\n"
+# define FILE_ERROR "\033[31m  error:  \033[0m  Error in open file\n"
+# define MLX_ERROR "\033[31m  error:  \033[0m  in mlx\n"
+# define NO_FOUND "\033[31m  error:  \033[0m  No player found on the map.\n"
+# define FOUND_DUP "\033[31m  error:  \033[0m  Multiple player positions\n"
+# define TEXTURE_FAILD "\033[31m  error:  \033[0m  error in load texture\n"
+
 #endif

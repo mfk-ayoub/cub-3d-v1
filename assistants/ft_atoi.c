@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 05:40:31 by ayel-mou          #+#    #+#             */
+/*   Updated: 2025/02/26 05:40:49 by ayel-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	ft_isdigit(int index)
@@ -23,8 +35,8 @@ static bool	is_space(char c)
 
 int	ft_atoi(char *str)
 {
-	int ans;
-	int result;
+	int	ans;
+	int	result;
 
 	if (!str)
 		return (-1);

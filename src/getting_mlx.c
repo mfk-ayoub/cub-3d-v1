@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 18:47:30 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/23 02:19:13 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:05:00 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	put_pixel(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+	if (y >= HEIGHT ||x >= WIDTH || x < 0 ||  y < 0)
 		return ;
 	if (!cub->img.addr)
 		return ;

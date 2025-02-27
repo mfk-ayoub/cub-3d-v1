@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:42:05 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 02:56:35 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:26:58 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	is_wall(t_data *data, double x, double y)
 	int	map_x;
 	int	map_y;
 
-	map_x = (int)(x + COLLISION_RADIUS);
-	map_y = (int)(y + COLLISION_RADIUS);
+	map_x = (int)(x);
+	map_y = (int)(y);
 	if (map_x < 0 || map_y < 0 || map_x >= data->col || map_y >= data->row)
 		return (1);
 	if (data->map[map_y][map_x] == '1')
@@ -39,11 +39,6 @@ float	normalize_angle(float angle)
 
 void	get_delta(t_rays *rays)
 {
-	if (rays->dirx == 0 && rays->diry == 0)
-	{
-		rays->dirx = 0.00001;
-		rays->diry = 0.00001;
-	}
 	if (rays->dirx == 0)
 		rays->deltax = INFINITY;
 	else
@@ -80,7 +75,7 @@ void	get_distance_to_wall(t_rays *rays, t_data *data, t_cub *cub)
 	else
 		rays->distance = (rays->mapy - cub->player_y + (1 - rays->stepy) / 2)
 			/ rays->diry;
-	rays->distance *= cos(cub->p_angle - rays->r_angle);
+	// rays->distance *= cos(cub->p_angle - rays->r_angle);
 }
 
 void	get_steps_side_dis(t_rays *rays, t_cub *cub)

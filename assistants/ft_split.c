@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:38:50 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/07 10:38:55 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/26 05:40:18 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ char	**allocate_words(char const *s, char c, char **array, size_t word_count)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t word_count;
-	char **array;
+	size_t	word_count;
+	char	**array;
 
 	if (!s)
 		return (NULL);

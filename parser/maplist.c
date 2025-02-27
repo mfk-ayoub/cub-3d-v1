@@ -6,41 +6,39 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:06:03 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 03:37:34 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:39:08 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_maplist	*create_map(char *line)
+t_maplist *create_map(char *line)
 {
-	t_maplist	*node;
-
-	node = (t_maplist *)malloc(sizeof(t_maplist));
-	if (!node)
-		return (NULL);
-	node->line = ft_strdup(line);
-	node->next = NULL;
-	return (node);
+    t_maplist *node;
+    node = (t_maplist *)malloc(sizeof(t_maplist));
+    if (!node)
+        return (NULL);
+    node->line = ft_strdup(line);
+    node->next = NULL;
+    return (node);
 }
 
-void	add_map_node(t_maplist **head, char *line)
+void add_map_node(t_maplist **head, char *line)
 {
-	t_maplist	*node;
-	t_maplist	*temp;
-
-	node = create_map(line);
-	if (!node)
-		return ;
-	if (*head == NULL)
-		*head = node;
-	else
-	{
-		temp = *head;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = node;
-	}
+    t_maplist *node;
+    t_maplist *temp;
+    node = create_map(line);
+    if (!node)
+        return;
+    if (*head == NULL)
+        *head = node;
+    else
+    {
+        temp = *head;
+        while (temp->next)
+            temp = temp->next;
+        temp->next = node;
+    }
 }
 
 int	is_valid_characters(char *line)

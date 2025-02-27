@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:46:01 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/17 23:59:04 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:39:49 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	check_extension(char *exten, char *s)
 	free(copy);
 	return (result);
 }
+
 int	check_map(t_data *data, char *path)
 {
 	int			fd;
@@ -48,17 +49,16 @@ int	check_map(t_data *data, char *path)
 		return (-1);
 	maplist = get_map(fd);
 	if (!maplist)
-		return (printf("tfo\n"), 1);
+		return (1);
 	head = maplist;
-	// print_map_list(head);
 	if (validate_map(head))
 		return (ft_mapclear(&head), 1);
 	if (convert_map(data, head))
 		return (ft_mapclear(&head), 1);
 	close(fd);
-	// print_map(*map);
 	return (ft_mapclear(&head), 0);
 }
+
 
 int	start_parser(t_texture *texture, t_data *data, char *path, int fd)
 {

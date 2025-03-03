@@ -6,11 +6,83 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 05:36:40 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/27 13:38:24 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:16:47 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+// t_maplist *get_map(int fd)
+// {
+//     char *line;
+//     t_maplist *map;
+//     int start;
+
+//     map = NULL;
+//     start = 0;
+//     line = get_next_line(fd);
+//     while (line)
+//     {
+//         if (!skip_textures(&line, fd))
+//         {
+//             free(line);
+//             break;
+//         }
+//         if (start && line[0] == '\n')
+//         {
+//             free(line);
+//             ft_mapclear(&map);
+//             return (NULL);
+//         }
+//         if (line[0] == ' ' || line[0] == '\t' || line[0] == '1')
+//         {
+//             add_map_node(&map, line);
+//             start = 1;
+//         }
+//         free(line);
+//         line = get_next_line(fd);
+//     }
+//     return (map);
+// }
+
+// t_maplist *get_map(int fd)
+// {
+//     char *line;
+//     char *next_line;
+//     t_maplist *map;
+//     int start;
+
+//     map = NULL;
+//     start = 0;
+//     line = get_next_line(fd);
+//     while (line)
+//     {
+//         next_line = get_next_line(fd);  // Read the next line in advance
+
+//         if (!skip_textures(&line, fd))
+//         {
+//             free(line);
+//             break;
+//         }
+//         if (start && line[0] == '\n')
+//         {
+//             free(line);
+//             ft_mapclear(&map);
+//             return (NULL);
+//         }
+//         if (line[0] == ' ' || line[0] == '\t' || line[0] == '1')
+//         {
+//             add_map_node(&map, line);
+//             start = 1;
+//         }
+//         if (!next_line)// If this is the last valid line
+//             start = 0;
+
+//         free(line);
+//         line = next_line;  // Move to the next line
+//     }
+//     return (map);
+// }
 
 t_maplist *get_map(int fd)
 {
@@ -24,20 +96,34 @@ t_maplist *get_map(int fd)
     line = get_next_line(fd);
     while (line)
     {
+        if (line[0] == '\n' || line[0] == '0' || !line)
+        {
+            free(line);
+            if (start) 
+            {
+                ft_mapclear(&map);
+                return (NULL);
+            }
+            line = get_next_line(fd);
+            continue;
+        }
+        
         if (!skip_textures(&line, fd))
         {
             free(line);
             break;
         }
+        
         next_line = get_next_line(fd);
-        if (start && is_valid_characters(line))
-        {
-            free(line);
-            ft_mapclear(&map);
-            return (NULL);
-        }
+        
         if (line[0] == ' ' || line[0] == '\t' || line[0] == '1')
         {
+            if (is_valid_characters(line))
+            {
+                free(line);
+                ft_mapclear(&map);
+                return (NULL);
+            }
             add_map_node(&map, line);
             start = 1;
         }
@@ -46,7 +132,6 @@ t_maplist *get_map(int fd)
     }
     return (map);
 }
-
 void	process_line(t_data *data, t_maplist *temp)
 {
 	while (temp->line[data->j])

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/27 03:09:58 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:17:01 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	game_loop(t_cub *cub)
 	mlx_clear_window(cub->mlx, cub->win);
 	ray_casting(cub, cub->data, cub->texture, cub->rays);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
-	path_guide(cub);
 	movement(cub);
 	rotation(cub);
 	return (0);
@@ -57,7 +56,7 @@ int	main(int ac, char **av)
 	{
 		if (proccess_input(&data, cub, av[1]))
 		{
-			destroy_all(cub);
+			// destroy_all(cub);
 			return (1);
 		}
 		if (run_the_program(&data, cub))

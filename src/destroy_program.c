@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:55:10 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/28 04:57:03 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:09:08 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,72 +47,29 @@ void	ft_mapclear(t_maplist **map)
 
 void	destroy_data(t_data *data, t_texture *texture)
 {
-	if (texture)
-	{
-		if (texture->rgb)
-		{
-			free(texture->rgb->f);
-			free(texture->rgb->c);
-			free(texture->rgb);
-		}
-		free(texture->no);
-		free(texture->so);
-		free(texture->we);
-		free(texture->ea);
-		free(texture);
-	}
-	if (data)
-	{
-		free_array(data->map);
-		data->map = NULL;
-	}
+	
+	free(texture->rgb->f);
+	free(texture->rgb->c);
+	free(texture->rgb);
+	free(texture->no);
+	free(texture->so);
+	free(texture->we);
+	free(texture->ea);
+	free(texture);
+	free_array(data->map);
+	data->map = NULL;
+
 }
 
-// void	destroy_all(t_cub *cub)
-// {
-// 	if (!cub)
-// 		return ;
-// 	if (cub->mlx && cub->img.img)
-// 		mlx_destroy_image(cub->mlx, cub->img.img);
-// 	if (cub->mlx && cub->win)
-// 		mlx_destroy_window(cub->mlx, cub->win);
-// 	if (cub->mlx)
-// 	{
-// 		mlx_destroy_display(cub->mlx);
-// 		free(cub->mlx);
-// 	}
-// 	destroy_data(cub->data, cub->texture);
-// 	free(cub->rays);
-// 	free(cub);
-// 	exit(0);
-// }
 void destroy_all(t_cub *cub)
 {
-    if (!cub)
-        return;
-    if (cub->mlx && cub->img.img)
-        mlx_destroy_image(cub->mlx, cub->img.img);
-    if (cub->texture)
-    {
-        if (cub->texture->no_texture.img)
-            mlx_destroy_image(cub->mlx, cub->texture->no_texture.img);
-        if (cub->texture->so_texture.img)
-            mlx_destroy_image(cub->mlx, cub->texture->so_texture.img);
-        if (cub->texture->we_texture.img)
-            mlx_destroy_image(cub->mlx, cub->texture->we_texture.img);
-        if (cub->texture->ea_texture.img)
-            mlx_destroy_image(cub->mlx, cub->texture->ea_texture.img);
-    }
-    // if (cub->mlx && cub->win)
-    //     mlx_destroy_window(cub->mlx, cub->win);
-    // if (cub->mlx)
-    // {
-    //     mlx_destroy_display(cub->mlx);
-    //     free(cub->mlx);
-    // }
+	mlx_destroy_image(cub->mlx, cub->texture->no_texture.img);
+	mlx_destroy_image(cub->mlx, cub->texture->so_texture.img);
+	mlx_destroy_image(cub->mlx, cub->texture->we_texture.img);
+	mlx_destroy_image(cub->mlx, cub->texture->ea_texture.img);
 	destroy_data(cub->data,cub->texture);
     mlx_clear_window(cub->mlx, cub->win);
-	// mlx_destroy_image(cub->mlx, cub->img.img);
+	mlx_destroy_image(cub->mlx, cub->img.img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
     free(cub->mlx);

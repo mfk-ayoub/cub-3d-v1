@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/03 14:17:01 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:05:09 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ int	run_the_program(t_data *data, t_cub *cub)
 	ft_memset(cub->rays, 0, sizeof(t_rays) * NUM_RAYS);
 	init_rays(cub->rays);
 	init_textures(cub);
-	cub->img.img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel,
-			&cub->img.line_length, &cub->img.endian);
 	mlx_hook(cub->win, 2, 1L << 0, key_press, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_release, cub);
 	mlx_loop_hook(cub->mlx, game_loop, cub);

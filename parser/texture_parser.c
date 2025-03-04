@@ -50,7 +50,7 @@ int	check_trimmed(char *trimmed)
 	count = 0;
 	while (trimmed[i])
 	{
-		if (!(trimmed[i] >= '0' && trimmed[i] <= '9') && trimmed[i] != ',')
+		if (!(trimmed[i] >= '0' && trimmed[i] <= '9') && trimmed[i] != ',' && trimmed[i] == ' ')
 			return (1);
 		if (trimmed[i] == ',')
 			count++;

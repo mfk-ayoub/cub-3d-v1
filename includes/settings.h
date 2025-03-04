@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 05:42:17 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/27 13:08:44 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:26:28 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define PI 3.141592653589793
 # define FOV 1.0471975512
 # define OFFSET 4
-# define ROTATION 0.01
+# define ROTATION 0.009
 # define MOVESTEP 0.02
 # define NUM_RAYS 1200
 # define ESC 65307

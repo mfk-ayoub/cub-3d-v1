@@ -1,17 +1,22 @@
-NO textures/wall/w1.xpm
-SO textures/wall/w2.xpm
-          WE           textures/wall/w3.xpm
-             EA                   textures/wall/w4.xpm
-
-            F 153    ,    0,1
-C 50,29,24
+   WE                            textures/wolfenstein/eagle.xpm 
+NO      textures/wolfenstein/grey_stone.xpm
 
 
+
+SO textures/wolfenstein/red_brick.xpm
+
+F   69, 222, 199
+
+EA textures/wolfenstein/mossy.xpm
+
+
+
+C 235, 198, 52
 
 111111111111111111111111
-100000000001000000000001
-10000000001 100000000001
-100000000N01000000000001
+100000000000000000000001
+100000000000000000000001
+100000000N00000000000001
 100000000000000000000001
 100000000000000000000001
 100000000000000000000001

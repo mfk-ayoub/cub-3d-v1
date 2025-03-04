@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 15:05:09 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:52:20 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ int	run_the_program(t_data *data, t_cub *cub)
 	mlx_loop(cub->mlx);
 	return (0);
 }
+// todo 
+void kill_leaks(t_data *data,t_cub *cub)
+{
+	
+	
+	
+}
 
 int	main(int ac, char **av)
 {
@@ -53,11 +60,14 @@ int	main(int ac, char **av)
 	{
 		if (proccess_input(&data, cub, av[1]))
 		{
-			// destroy_all(cub);
+			kill_leaks(&data,cub);
 			return (1);
 		}
 		if (run_the_program(&data, cub))
+		{
+			destroy_all(cub);
 			return (1);
+		}
 	}
 	else
 		printf("Error\n");

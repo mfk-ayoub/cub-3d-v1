@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:42:05 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 14:39:10 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:20:40 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	get_distance_to_wall(t_rays *rays, t_data *data, t_cub *cub)
 	else
 		rays->distance = (rays->mapy - cub->player_y + (1 - rays->stepy) / 2)
 			/ rays->diry;
-	// rays->distance *= cos(cub->p_angle - rays->r_angle);
 }
 
 void	get_steps_side_dis(t_rays *rays, t_cub *cub)

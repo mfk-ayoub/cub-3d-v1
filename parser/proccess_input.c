@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:46:01 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 22:21:49 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 22:28:21 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,9 @@ int	proccess_input(t_data *data, t_cub *cub, char *path, t_texture *texture)
 	if (start_parser(cub,texture, data, path, fd))
 	{
 		destroy_data(cub->data,cub->texture);
-		free(cub);
-		close(fd);
+		(free(cub),close(fd));
 		exit(1);
 	}
-	// return (1);
 	close(fd);
 	debug(cub, data, texture);
 	return (0);

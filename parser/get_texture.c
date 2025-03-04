@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:46:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 05:35:33 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 22:27:29 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ int	parse_texture_extension(t_texture *texture)
 
 	fd = open(texture->ea, O_RDONLY);
 	if (fd < 0)
-		return (close(fd), 1);
+		return (1);
 	close(fd);
 	fd = open(texture->so, O_RDONLY);
 	if (fd < 0)
-		return (close(fd), 1);
+		return (1);
 	close(fd);
 	fd = open(texture->we, O_RDONLY);
 	if (fd < 0)
-		return (close(fd), 1);
+		return (1);
 	close(fd);
 	fd = open(texture->no, O_RDONLY);
 	if (fd < 0)
-		return (close(fd), 1);
+		return (1);
 	close(fd);
 	if (!check_extension(texture->no, "xpm") || !check_extension(texture->ea,
 			"xpm") || !check_extension(texture->we, "xpm")

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:46:01 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 16:37:49 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 22:21:49 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,42 +60,48 @@ int	check_map(t_data *data, char *path)
 }
 
 
-int	start_parser(t_texture *texture, t_data *data, char *path, int fd)
+int	start_parser(t_cub *cub,t_texture *texture, t_data *data, char *path, int fd)
 {
 	if (!check_extension(path, "cub"))
 	{
 		printf(EXTENTASION);
-		return (close(fd), 1);
+		return (1);
 	}
-	if (valid_texture(texture, fd))
-		return (close(fd), 1);
+	if (valid_texture(cub,texture, fd))
+		return (1);
 	if (check_map(data, path))
 	{
 		printf(INVALID_MAP);
-		return (close(fd), 1);
+		return (1);
 	}
 	return (0);
 }
 
-int	proccess_input(t_data *data, t_cub *cub, char *path)
+int	proccess_input(t_data *data, t_cub *cub, char *path, t_texture *texture)
 {
-	t_texture	*texture;
 	int			fd;
-
+	
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
 		printf(FILE_ERROR);
-		return (1);
+		free(cub),free(texture);
+		exit(1);
 	}
 	if (init_data(data))
 		return (close(fd),1);
-	if (init_texture(&texture))
+	if (init_texture(texture))
 		return (close(fd),1);
 	if (init_cub(cub, data, texture))
-		return (free(texture),close(fd),1);
-	if (start_parser(texture, data, path, fd))
-		return (free(texture),1);
+		return (close(fd),1);
+	if (start_parser(cub,texture, data, path, fd))
+	{
+		destroy_data(cub->data,cub->texture);
+		free(cub);
+		close(fd);
+		exit(1);
+	}
+	// return (1);
 	close(fd);
 	debug(cub, data, texture);
 	return (0);

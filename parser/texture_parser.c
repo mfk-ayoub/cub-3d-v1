@@ -137,11 +137,13 @@ int	read_texture_lines(t_texture *texture, int fd)
 			return (1);
 		line = get_next_line(fd);
 	}
+	// close(fd);
 	return (0);
 }
 
-int	valid_texture(t_texture *texture, int fd)
+int	valid_texture(t_cub *cub,t_texture *texture, int fd)
 {
+	(void)cub;
 	if (read_texture_lines(texture, fd))
 	{
 		printf(TEXTURE);
@@ -149,11 +151,20 @@ int	valid_texture(t_texture *texture, int fd)
 	}
 	else if (!texture->no || !texture->so || !texture->we || !texture->ea
 		|| !texture->rgb->f || !texture->rgb->c)
-		return (printf(TEXTURE), 1);
+	{
+		printf(TEXTURE);
+		return (1);
+	}
 	else if (parse_texture_extension(texture))
-		return (printf(T_EXTENTASION), 1);
+	{
+		printf(TEXTURE);
+		return (1);
+	}
 	else if (check_colors(texture))
-		return (printf(COLORS_ERROR), 1);
+	{
+		printf(COLORS_ERROR);
+		return (1);
+	}
 	else
 		return (0);
 }

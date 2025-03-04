@@ -1,12 +1,11 @@
-NO 			      textures/holy/respawn_anchor_side1.xpm
-SO 			     textures/holy/respawn_anchor_side2.xpm
-WE 		textures/holy/respawn_anchor_side3.xpm
-EA 	textures/holy/respawn_anchor_sideG4.xpm
+NO textures/holy/respawn_anchor_side1.xpm
+SO textures/holy/respawn_anchor_side2.xpm
+WE textures/holy/respawn_anchor_side3.xpm
+EA textures/holy/respawn_anchor_sid
 
 C 35,19,73
 F 15,6,40
 
-1111111111111111111111111
 1000000000110000000000001
 1011000001110000000000001
 1001000000000000000000001

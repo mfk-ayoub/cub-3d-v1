@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 16:52:20 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 21:42:03 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,34 @@ int	run_the_program(t_data *data, t_cub *cub)
 	mlx_loop(cub->mlx);
 	return (0);
 }
-// todo 
-void kill_leaks(t_data *data,t_cub *cub)
+void kill_leaks(t_data *data, t_cub *cub)
 {
-	
-	
-	
+    (void)data;
+    
+	free(cub->texture->rgb);
+	cub->texture->rgb = NULL;
+	free(cub->texture);
+	cub->texture = NULL;
+	free(cub);
 }
+
 
 int	main(int ac, char **av)
 {
 	t_data	data;
 	t_cub	*cub;
-
+	t_texture	*texture;
+	
 	cub = malloc(sizeof(t_cub));
+	texture = malloc(sizeof(t_texture));
+	// allocate_memory(cub,texture);
+    if (!texture)
+        return (1);
     ft_memset(cub, 0, sizeof(t_cub));
 	ft_memset(&data, 0, sizeof(t_data));
 	if (ac == 2)
 	{
-		if (proccess_input(&data, cub, av[1]))
+		if (proccess_input(&data, cub, av[1],texture))
 		{
 			kill_leaks(&data,cub);
 			return (1);

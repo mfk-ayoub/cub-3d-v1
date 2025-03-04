@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 05:42:17 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 13:26:28 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 21:17:49 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 # define FRAMES 4
 # define EXTENTASION "\033[31m error: \033[0m Invalid extension\n"
 # define TEXTURE "\033[31m  error:  \033[0m  Textures not found\n"
-# define T_EXTENTASION "\033[31m  error:  \033[0m  Invalid texture extension\n"
 # define COLORS_ERROR "\033[31m  error:  \033[0m  Invalid colours\n"
 # define INVALID_MAP "\033[31m  error:  \033[0m  Invalid Map\n"
 # define FILE_ERROR "\033[31m  error:  \033[0m  Error in open file\n"

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:55:10 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 15:09:08 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 21:05:11 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	destroy_data(t_data *data, t_texture *texture)
 	free(texture->we);
 	free(texture->ea);
 	free(texture);
+
 	free_array(data->map);
 	data->map = NULL;
 

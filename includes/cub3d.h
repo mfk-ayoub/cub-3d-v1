@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 05:24:38 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/04 21:47:43 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "structs.h"
 
 // parser
-int			proccess_input(t_data *data, t_cub *cub, char *path);
-int			init_texture(t_texture **texture);
+int			proccess_input(t_data *data, t_cub *cub, char *path, t_texture *texture);
+int			init_texture(t_texture *texture);
 int			init_data(t_data *data);
 int			init_cub(t_cub *cub, t_data *data, t_texture *texture);
 int			ft_atoi(char *str);
@@ -37,7 +37,7 @@ int			llist(t_list *list);
 void		copy_the_list(t_list *list, char *the_line);
 void		dealloc(t_list **list, t_list *clean_node, char *buf);
 char		*ft_strchr(const char *s, int c);
-int			valid_texture(t_texture *texture, int fd);
+int			valid_texture(t_cub *cub,t_texture *texture, int fd);
 int			is_valid_rgb(char *rgb);
 int			check_colors(t_texture *texture);
 int			parse_texture_extension(t_texture *texture);
@@ -90,5 +90,5 @@ int			key_press(int key, t_cub *cub);
 int			is_wall(t_data *data, double x, double y);
 void		rotation(t_cub *cub);
 void		movement(t_cub *cub);
-
+void		destroy_data(t_data *data, t_texture *texture);
 #endif

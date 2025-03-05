@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 21:09:40 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:13:31 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int init_texture(t_texture *texture)
     texture->so_texture.img = NULL;
     texture->we_texture.img = NULL;
     texture->ea_texture.img = NULL;
+	texture->shot.img =  NULL;
     return (0);
 }
 
@@ -88,4 +89,5 @@ void	init_textures(t_cub *cub)
 	cub->texture->so_texture = load_texture(cub, cub->texture->so);
 	cub->texture->we_texture = load_texture(cub, cub->texture->we);
 	cub->texture->ea_texture = load_texture(cub, cub->texture->ea);
+	cub->texture->shot = load_texture(cub,"textures/shotgun/0.xpm");
 }

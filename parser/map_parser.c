@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 05:36:40 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/03 14:16:47 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:48:23 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	process_line(t_data *data, t_maplist *temp)
 	{
 		if (temp->line[data->j] == ' ' || temp->line[data->j] == '\t'
 			|| temp->line[data->j] == '\n')
-			data->map[data->i][data->j] = '1';
+                data->map[data->i][data->j] = '1';
 		else
 			data->map[data->i][data->j] = temp->line[data->j];
 		data->j++;

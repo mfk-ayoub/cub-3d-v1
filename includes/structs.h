@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:07:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/02/26 04:42:20 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:11:12 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_texture
 	t_mlx				so_texture;
 	t_mlx				we_texture;
 	t_mlx				ea_texture;
+	t_mlx				shot;
 	int					c_color;
 	int					f_color;
 }						t_texture;

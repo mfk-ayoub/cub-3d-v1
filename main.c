@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 13:31:44 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:10:39 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-void	shotgun_pixel(t_cub *cub, t_mlx texture, int map_x, int map_y)
+void	texture_pixel(t_cub *cub, t_mlx texture, int map_x, int map_y)
 {
 	int	x;
 	int	y;
@@ -37,9 +37,10 @@ void	shotgun_pixel(t_cub *cub, t_mlx texture, int map_x, int map_y)
 
 int	game_loop(t_cub *cub)
 {
+	
 	mlx_clear_window(cub->mlx, cub->win);
 	ray_casting(cub, cub->data, cub->texture, cub->rays);
-	shotgun_pixel(cub,cub->texture->shot,100, 100);
+	texture_pixel(cub,cub->texture->shot,100, 100);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
 	movement(cub);
 	rotation(cub);
@@ -83,8 +84,8 @@ int	run_the_program(t_data *data, t_cub *cub)
 	init_textures(cub);
 	mlx_hook(cub->win, 2, 1L << 0, key_press, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_release, cub);
-	mlx_loop_hook(cub->mlx, game_loop, cub);
 	mlx_hook(cub->win, 6, 1L << 6, mouse_move, cub);
+	mlx_loop_hook(cub->mlx, game_loop, cub);
 	mlx_loop(cub->mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 05:42:17 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 21:17:49 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:51:21 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define RIGHT 65363
 # define LEFT 65361
 # define FRAMES 4
+# define MOUSE_LEFT 1
 # define EXTENTASION "\033[31m error: \033[0m Invalid extension\n"
 # define TEXTURE "\033[31m  error:  \033[0m  Textures not found\n"
 # define COLORS_ERROR "\033[31m  error:  \033[0m  Invalid colours\n"

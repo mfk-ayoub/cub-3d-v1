@@ -6,11 +6,21 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:09:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/03 13:12:14 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:44:04 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+
+int	is_invalid_texture(char *str)
+{
+	if (ft_strncmp(str, "NO", 2) && ft_strncmp(str, "SO", 2) && ft_strncmp(str,
+			"WE", 2) && ft_strncmp(str, "EA", 2) && ft_strncmp(str, "F", 1)
+		&& ft_strncmp(str, "C", 1))
+		return (1);
+	return (0);
+}
 
 int	get_biggest_line(t_maplist *head)
 {
@@ -28,27 +38,26 @@ int	get_biggest_line(t_maplist *head)
 	return (big_line);
 }
 
-
 int	is_not_closed(t_maplist *prev, t_maplist *current, t_maplist *next)
 {
 	int	i;
-	// int	line_len;
 
 	i = 0;
-	// line_len = ft_strlen(current->line);
 	while (current->line[i])
 	{
 		if (current->line[i] == '0' || current->line[i] == 'N'
 			|| current->line[i] == 'S' || current->line[i] == 'W'
 			|| current->line[i] == 'E')
 		{
-			// if (i == 0 || i == line_len - 1) 
-			// 	return (1);
-			if (check_space(current->line[i - 1]) || check_space(current->line[i + 1]))
+			if (check_space(current->line[i - 1]))
 				return (1);
-			if (!prev || i >= (int)ft_strlen(prev->line) || check_space(prev->line[i]))
+			if(check_space(current->line[i+ 1]))
 				return (1);
-			if (!next || i >= (int)ft_strlen(next->line) || check_space(next->line[i]))
+			if (!prev || i >= (int)ft_strlen(prev->line)
+				|| check_space(prev->line[i]))
+				return (1);
+			if (!next || i >= (int)ft_strlen(next->line)
+				|| check_space(next->line[i]))
 				return (1);
 		}
 		i++;
@@ -64,7 +73,6 @@ int	validate_map(t_maplist *map)
 
 	if (!map)
 		return (1);
-
 	prev = NULL;
 	current = map;
 	while (current)

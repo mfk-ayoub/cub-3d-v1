@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 05:42:17 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 13:51:21 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/06 23:07:28 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
 # define WIDTH 1200
 # define HEIGHT 800
 # define BUFFER_SIZE 1
@@ -31,7 +30,7 @@
 # define OFFSET 4
 # define ROTATION 0.009
 # define MOVESTEP 0.02
-# define NUM_RAYS 1200
+# define NUM_RAYS WIDTH
 # define ESC 65307
 # define W 119
 # define A 97
@@ -42,8 +41,8 @@
 # define FRAMES 4
 # define MOUSE_LEFT 1
 # define EXTENTASION "\033[31m error: \033[0m Invalid extension\n"
-# define TEXTURE "\033[31m  error:  \033[0m  Textures not found\n"
-# define COLORS_ERROR "\033[31m  error:  \033[0m  Invalid colours\n"
+# define TEXTURE "\033[31m  error:  \033[0m  in Textures \n"
+# define COLORS_ERROR "\033[31m  error:  \033[0m  Invalid colors\n"
 # define INVALID_MAP "\033[31m  error:  \033[0m  Invalid Map\n"
 # define FILE_ERROR "\033[31m  error:  \033[0m  Error in open file\n"
 # define MLX_ERROR "\033[31m  error:  \033[0m  in mlx\n"

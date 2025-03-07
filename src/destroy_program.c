@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:55:10 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 14:13:40 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:40:12 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void destroy_all(t_cub *cub)
 	mlx_destroy_image(cub->mlx, cub->texture->so_texture.img);
 	mlx_destroy_image(cub->mlx, cub->texture->we_texture.img);
 	mlx_destroy_image(cub->mlx, cub->texture->ea_texture.img);
-	mlx_destroy_image(cub->mlx, cub->texture->shot.img);
 	destroy_data(cub->data,cub->texture);
     mlx_clear_window(cub->mlx, cub->win);
 	mlx_destroy_image(cub->mlx, cub->img.img);

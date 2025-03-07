@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 21:47:43 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:39:40 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void		put_pixel(t_cub *cub, int x, int y, int color);
 int			ray_casting(t_cub *cub, t_data *data, t_texture *texture,
 				t_rays *rays);
 void		init_rays(t_rays *rays);
-void		path_guide(t_cub *cub);
 float		normalize_angle(float angle);
 int			get_colors(char *rgb);
 void		destroy_all(t_cub *cub);
@@ -91,4 +90,7 @@ int			is_wall(t_data *data, double x, double y);
 void		rotation(t_cub *cub);
 void		movement(t_cub *cub);
 void		destroy_data(t_data *data, t_texture *texture);
+int process_map(char **line, int fd, t_maplist **map, int *start);
+t_maplist *check_lines(int fd, t_maplist **map);
+int	is_invalid_texture(char *str);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 23:09:37 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:00:26 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	update(t_cub *cub, t_data *data, t_rays *rays)
 
 void	get_wall_data(t_rays *rays, t_cub *cub)
 {
-	rays->w_height = (double)HEIGHT / (rays->distance * cos(cub->p_angle - rays->r_angle));
+	double angle;
+
+	angle = normalize_angle(cub->p_angle - rays->r_angle);
+	rays->w_height = (double)HEIGHT / (rays->distance * cos(angle));
 	rays->w_top = ((double)HEIGHT / 2) - (rays->w_height / 2);
 	rays->w_bottom = ((double)HEIGHT / 2) + (rays->w_height / 2);
 	if (rays->w_bottom >= HEIGHT)
@@ -94,6 +97,7 @@ int	ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 	{
 		update(cub, data, rays);
 		rendring_all(cub, texture, rays);
+		
 		rays->ddi++;
 		rays->r_angle += (FOV / NUM_RAYS);
 	}

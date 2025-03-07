@@ -14,25 +14,25 @@
 
 int	set_texture_path(t_texture *texture, char *line, char *trimmed)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0)
+	if (!ft_strncmp(line, "NO", 2))
 	{
 		if (texture->no)
 			return (1);
 		texture->no = ft_strdup(trimmed);
 	}
-	else if (ft_strncmp(line, "SO ", 3) == 0)
+	else if (!ft_strncmp(line, "SO", 2))
 	{
 		if (texture->so)
 			return (1);
 		texture->so = ft_strdup(trimmed);
 	}
-	else if (ft_strncmp(line, "WE ", 3) == 0)
+	else if (!ft_strncmp(line, "WE", 2))
 	{
 		if (texture->we)
 			return (1);
 		texture->we = ft_strdup(trimmed);
 	}
-	else if (ft_strncmp(line, "EA ", 3) == 0)
+	else if (!ft_strncmp(line, "EA", 2))
 	{
 		if (texture->ea)
 			return (1);
@@ -41,47 +41,25 @@ int	set_texture_path(t_texture *texture, char *line, char *trimmed)
 	return (0);
 }
 
-int	check_trimmed(char *trimmed)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (trimmed[i])
-	{
-		if (!(trimmed[i] >= '0' && trimmed[i] <= '9') && trimmed[i] != ',' && trimmed[i] == ' ')
-			return (1);
-		if (trimmed[i] == ',')
-			count++;
-		i++;
-	}
-	if (count != 2)
-		return (1);
-	return (0);
-}
-
 int	texture_path(t_texture *texture, char *line, char *trimmed)
 {
-	if (ft_strncmp(line, "F", 1) == 0)
+	if (is_invalid_texture(line))
+		return (1);
+	if (!ft_strncmp(line, "F", 1))
 	{
-		if (check_trimmed(trimmed))
-			return (free(trimmed), 0);
 		if (texture->rgb->f)
 			return (1);
 		texture->rgb->f = ft_strdup(trimmed);
 		return (free(trimmed), 0);
 	}
-	else if (ft_strncmp(line, "C", 1) == 0)
+	else if (!ft_strncmp(line, "C", 1))
 	{
-		if (check_trimmed(trimmed))
-			return (free(trimmed), 0);
 		if (texture->rgb->c)
 			return (1);
 		texture->rgb->c = ft_strdup(trimmed);
 		return (free(trimmed), 0);
 	}
-	else if (set_texture_path(texture, line, trimmed) == 0)
+	else if (!set_texture_path(texture, line, trimmed))
 		return (free(trimmed), 0);
 	return (1);
 }
@@ -104,13 +82,10 @@ int	parse_texture_line(t_texture *texture, char *line)
 	}
 	ret = texture_path(texture, line, trimmed);
 	if (ret == 0)
-	{
-		free(line);
-		return (0);
-	}
+		return (free(line), 0);
 	free(line);
 	if (ret == 1)
-		free(trimmed);
+		return (free(trimmed), 1);
 	return (1);
 }
 
@@ -121,8 +96,7 @@ int	read_texture_lines(t_texture *texture, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line == NULL || ft_strlen(line) == 0 || ft_strspn(line,
-				" \t\n") == ft_strlen(line))
+		if (line[0] == '\n')
 		{
 			free(line);
 			line = get_next_line(fd);
@@ -137,11 +111,10 @@ int	read_texture_lines(t_texture *texture, int fd)
 			return (1);
 		line = get_next_line(fd);
 	}
-	// close(fd);
 	return (0);
 }
 
-int	valid_texture(t_cub *cub,t_texture *texture, int fd)
+int	valid_texture(t_cub *cub, t_texture *texture, int fd)
 {
 	(void)cub;
 	if (read_texture_lines(texture, fd))

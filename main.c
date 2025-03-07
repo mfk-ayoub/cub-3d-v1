@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 14:10:39 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:38:22 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,12 @@
 
 
 
-void	texture_pixel(t_cub *cub, t_mlx texture, int map_x, int map_y)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	y = 0;
-	while (y < texture.height)
-	{
-		x = 0;
-		while (x < texture.width)
-		{
-			color = get_pixel_color(texture, x, y);
-			if (color != -16777216)
-				put_pixel(cub, map_x + x, map_y + y, color);
-			x++;
-		}
-		y++;
-	}
-}
 
 int	game_loop(t_cub *cub)
 {
 	
 	mlx_clear_window(cub->mlx, cub->win);
 	ray_casting(cub, cub->data, cub->texture, cub->rays);
-	texture_pixel(cub,cub->texture->shot,100, 100);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.img, 0, 0);
 	movement(cub);
 	rotation(cub);
@@ -68,7 +47,12 @@ int mouse_move(int x, int y, t_cub *cub)
     last_x = x;
     return (0);
 }
-
+int ft_exit(t_cub *cub)
+{
+	destroy_all(cub);
+	exit(0);
+	return (0);
+}
 
 int	run_the_program(t_data *data, t_cub *cub)
 {
@@ -85,6 +69,7 @@ int	run_the_program(t_data *data, t_cub *cub)
 	mlx_hook(cub->win, 2, 1L << 0, key_press, cub);
 	mlx_hook(cub->win, 3, 1L << 1, key_release, cub);
 	mlx_hook(cub->win, 6, 1L << 6, mouse_move, cub);
+	mlx_hook(cub->win, 17, 0, ft_exit, cub);
 	mlx_loop_hook(cub->mlx, game_loop, cub);
 	mlx_loop(cub->mlx);
 	return (0);
@@ -108,23 +93,19 @@ int	main(int ac, char **av)
 	t_texture	*texture;
 	
 	cub = malloc(sizeof(t_cub));
+	if (!cub)
+		return (1);
 	texture = malloc(sizeof(t_texture));
     if (!texture)
-        return (1);
+        return (free(cub),1);
     ft_memset(cub, 0, sizeof(t_cub));
 	ft_memset(&data, 0, sizeof(t_data));
 	if (ac == 2)
 	{
 		if (proccess_input(&data, cub, av[1],texture))
-		{
-			kill_leaks(&data,cub);
-			return (1);
-		}
+			return (kill_leaks(&data,cub),1);
 		if (run_the_program(&data, cub))
-		{
-			destroy_all(cub);
-			return (1);
-		}
+			return (destroy_all(cub),1);
 	}
 	else
 		printf("Error\n");

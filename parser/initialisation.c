@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:50:48 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:08 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:38:04 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,24 @@ int	init_cub(t_cub *cub, t_data *data, t_texture *texture)
 	return (0);
 }
 
-int init_texture(t_texture *texture)
+int	init_texture(t_texture *texture)
 {
-    texture->no = NULL;
-    texture->so = NULL;
-    texture->we = NULL;
-    texture->ea = NULL;
-    texture->rgb = malloc(sizeof(t_rgb));
-    if (!texture->rgb)
-    {
-        return (1);
-    }
-    texture->rgb->f = NULL;
-    texture->rgb->c = NULL;
-    texture->no_texture.img = NULL;
-    texture->so_texture.img = NULL;
-    texture->we_texture.img = NULL;
-    texture->ea_texture.img = NULL;
-	texture->shot.img =  NULL;
-    return (0);
+	texture->no = NULL;
+	texture->so = NULL;
+	texture->we = NULL;
+	texture->ea = NULL;
+	texture->rgb = malloc(sizeof(t_rgb));
+	if (!texture->rgb)
+	{
+		return (1);
+	}
+	texture->rgb->f = NULL;
+	texture->rgb->c = NULL;
+	texture->no_texture.img = NULL;
+	texture->so_texture.img = NULL;
+	texture->we_texture.img = NULL;
+	texture->ea_texture.img = NULL;
+	return (0);
 }
 
 void	init_rays(t_rays *rays)
@@ -89,5 +88,4 @@ void	init_textures(t_cub *cub)
 	cub->texture->so_texture = load_texture(cub, cub->texture->so);
 	cub->texture->we_texture = load_texture(cub, cub->texture->we);
 	cub->texture->ea_texture = load_texture(cub, cub->texture->ea);
-	cub->texture->shot = load_texture(cub,"textures/shotgun/0.xpm");
 }

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:42:05 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/04 16:20:40 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:36:36 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_wall(t_data *data, double x, double y)
 	map_y = (int)(y);
 	if (map_x < 0 || map_y < 0 || map_x >= data->col || map_y >= data->row)
 		return (1);
-	if (data->map[map_y][map_x] == '1')
+	if (data->map[map_y][map_x] == '1' || data->map[map_y][map_x] == 'F')
 		return (1);
 	return (0);
 }

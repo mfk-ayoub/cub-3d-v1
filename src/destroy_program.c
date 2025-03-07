@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:55:10 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 22:40:12 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:49:07 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_mapclear(t_maplist **map)
 
 void	destroy_data(t_data *data, t_texture *texture)
 {
-	
 	free(texture->rgb->f);
 	free(texture->rgb->c);
 	free(texture->rgb);
@@ -56,25 +55,32 @@ void	destroy_data(t_data *data, t_texture *texture)
 	free(texture->we);
 	free(texture->ea);
 	free(texture);
-
 	free_array(data->map);
 	data->map = NULL;
-
 }
 
-void destroy_all(t_cub *cub)
+void	destroy_all(t_cub *cub)
 {
 	mlx_destroy_image(cub->mlx, cub->texture->no_texture.img);
 	mlx_destroy_image(cub->mlx, cub->texture->so_texture.img);
 	mlx_destroy_image(cub->mlx, cub->texture->we_texture.img);
 	mlx_destroy_image(cub->mlx, cub->texture->ea_texture.img);
-	destroy_data(cub->data,cub->texture);
-    mlx_clear_window(cub->mlx, cub->win);
+	destroy_data(cub->data, cub->texture);
+	mlx_clear_window(cub->mlx, cub->win);
 	mlx_destroy_image(cub->mlx, cub->img.img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
-    free(cub->mlx);
-    free(cub->rays);
-    free(cub);
-    exit(0);
+	free(cub->mlx);
+	free(cub->rays);
+	free(cub);
+	exit(0);
+}
+
+void	kill_leaks(t_cub *cub)
+{
+	free(cub->texture->rgb);
+	cub->texture->rgb = NULL;
+	free(cub->texture);
+	cub->texture = NULL;
+	free(cub);
 }

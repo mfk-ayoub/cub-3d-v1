@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/07 00:39:40 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:50:00 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "structs.h"
 
 // parser
-int			proccess_input(t_data *data, t_cub *cub, char *path, t_texture *texture);
+int			proccess_input(t_data *data, t_cub *cub, char *path,
+				t_texture *texture);
 int			init_texture(t_texture *texture);
 int			init_data(t_data *data);
 int			init_cub(t_cub *cub, t_data *data, t_texture *texture);
@@ -37,7 +38,7 @@ int			llist(t_list *list);
 void		copy_the_list(t_list *list, char *the_line);
 void		dealloc(t_list **list, t_list *clean_node, char *buf);
 char		*ft_strchr(const char *s, int c);
-int			valid_texture(t_cub *cub,t_texture *texture, int fd);
+int			valid_texture(t_cub *cub, t_texture *texture, int fd);
 int			is_valid_rgb(char *rgb);
 int			check_colors(t_texture *texture);
 int			parse_texture_extension(t_texture *texture);
@@ -90,7 +91,9 @@ int			is_wall(t_data *data, double x, double y);
 void		rotation(t_cub *cub);
 void		movement(t_cub *cub);
 void		destroy_data(t_data *data, t_texture *texture);
-int process_map(char **line, int fd, t_maplist **map, int *start);
-t_maplist *check_lines(int fd, t_maplist **map);
-int	is_invalid_texture(char *str);
+int			process_map(char **line, int fd, t_maplist **map, int *start);
+t_maplist	*check_lines(int fd, t_maplist **map);
+int			is_invalid_texture(char *str);
+void		kill_leaks(t_cub *cub);
+int			mouse_move(int x, int y, t_cub *cub);
 #endif

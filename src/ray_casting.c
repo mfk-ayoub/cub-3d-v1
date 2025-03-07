@@ -33,7 +33,7 @@ void	update(t_cub *cub, t_data *data, t_rays *rays)
 
 void	get_wall_data(t_rays *rays, t_cub *cub)
 {
-	double angle;
+	double	angle;
 
 	angle = normalize_angle(cub->p_angle - rays->r_angle);
 	rays->w_height = (double)HEIGHT / (rays->distance * cos(angle));
@@ -73,7 +73,7 @@ void	rendring_all(t_cub *cub, t_texture *texture, t_rays *rays)
 	i = -1;
 	texture->f_color = get_colors(texture->rgb->f);
 	texture->c_color = get_colors(texture->rgb->c);
-	get_wall_data(rays,cub);
+	get_wall_data(rays, cub);
 	while (++i < rays->w_top)
 		put_pixel(cub, rays->ddi, i, texture->c_color);
 	img = get_texture_side(rays, cub);
@@ -97,7 +97,6 @@ int	ray_casting(t_cub *cub, t_data *data, t_texture *texture, t_rays *rays)
 	{
 		update(cub, data, rays);
 		rendring_all(cub, texture, rays);
-		
 		rays->ddi++;
 		rays->r_angle += (FOV / NUM_RAYS);
 	}

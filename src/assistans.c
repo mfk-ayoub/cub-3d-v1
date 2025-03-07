@@ -6,13 +6,11 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:42:05 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 15:36:36 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:47:33 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-#define COLLISION_RADIUS 0.2
 
 int	is_wall(t_data *data, double x, double y)
 {

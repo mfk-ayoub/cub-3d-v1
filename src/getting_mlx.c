@@ -16,7 +16,7 @@ void	put_pixel(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
 
-	if (y >= HEIGHT ||x >= WIDTH || x < 0 ||  y < 0)
+	if (y >= HEIGHT || x >= WIDTH || x < 0 || y < 0)
 		return ;
 	if (!cub->img.addr)
 		return ;

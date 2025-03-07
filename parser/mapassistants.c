@@ -12,7 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-
 int	is_invalid_texture(char *str)
 {
 	if (ft_strncmp(str, "NO", 2) && ft_strncmp(str, "SO", 2) && ft_strncmp(str,
@@ -51,7 +50,7 @@ int	is_not_closed(t_maplist *prev, t_maplist *current, t_maplist *next)
 		{
 			if (check_space(current->line[i - 1]))
 				return (1);
-			if(check_space(current->line[i+ 1]))
+			if (check_space(current->line[i + 1]))
 				return (1);
 			if (!prev || i >= (int)ft_strlen(prev->line)
 				|| check_space(prev->line[i]))

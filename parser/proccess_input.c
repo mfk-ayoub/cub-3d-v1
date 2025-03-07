@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:46:01 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/07 00:38:02 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:51:42 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,5 @@ int	proccess_input(t_data *data, t_cub *cub, char *path, t_texture *texture)
 		exit(1);
 	}
 	close(fd);
-	debug(cub, data, texture);
 	return (0);
 }

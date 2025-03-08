@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/07 00:52:11 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:32:40 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int	main(int ac, char **av)
 			return (destroy_all(cub), 1);
 	}
 	else
-		printf("Error\n");
+		return (printf("Error\n"), free(cub), free(texture), 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/07 00:50:00 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/09 23:13:33 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ t_maplist	*check_lines(int fd, t_maplist **map);
 int			is_invalid_texture(char *str);
 void		kill_leaks(t_cub *cub);
 int			mouse_move(int x, int y, t_cub *cub);
+char		*remove_spaces(char *str);
 #endif

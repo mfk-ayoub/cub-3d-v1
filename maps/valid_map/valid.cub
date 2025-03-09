@@ -1,9 +1,12 @@
-NO 			      textures/matrix.xpm
+                NO 			      textures/matrix.xpm
 SO 			     textures/matrix.xpm
 WE 		textures/matrix.xpm
 EA 	textures/matrix.xpm	
 C 0,0,0
 F 0,0,0
+
+
+
 
 1111111111111111111111111
 1000000000110000000000001

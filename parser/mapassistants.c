@@ -6,11 +6,25 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:09:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/07 00:44:04 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/09 23:20:43 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+char	*remove_spaces(char *str)
+{
+	char	*new_str;
+
+	if (!str)
+		return (NULL);
+	while (*str && *str == ' ')
+		str++;
+	new_str = ft_strdup(str);
+	if (!new_str)
+		return (NULL);
+	return (new_str);
+}
 
 int	is_invalid_texture(char *str)
 {

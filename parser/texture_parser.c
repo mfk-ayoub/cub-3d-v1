@@ -68,22 +68,18 @@ int	parse_texture_line(t_texture *texture, char *line)
 {
 	char	*trimmed;
 	int		ret;
+	char	*new_line;
 
-	if (line[0] == 'F')
-		trimmed = ft_strtrim(&line[2], " \t\n");
-	else if (line[0] == 'C')
-		trimmed = ft_strtrim(&line[2], " \t\n");
-	else
-		trimmed = ft_strtrim(&line[2], " \t\n");
-	if (!trimmed)
-	{
-		free(line);
-		return (1);
-	}
-	ret = texture_path(texture, line, trimmed);
-	if (ret == 0)
-		return (free(line), 0);
+	new_line = NULL;
+	new_line = remove_spaces(line);
 	free(line);
+	trimmed = ft_strtrim(&new_line[2], " \t\n");
+	if (!trimmed)
+		return (free(new_line), 1);
+	ret = texture_path(texture, new_line, trimmed);
+	free(new_line);
+	if (ret == 0)
+		return (0);
 	if (ret == 1)
 		return (free(trimmed), 1);
 	return (1);

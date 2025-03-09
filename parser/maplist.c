@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:06:03 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/07 00:34:07 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/09 23:17:44 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,22 @@ int	is_valid_characters(char *line)
 
 int	skip_textures(char **line, int fd)
 {
-	while (*line && (!ft_strncmp(*line, "NO ", 3) || !ft_strncmp(*line, "SO ",
-				3) || !ft_strncmp(*line, "WE ", 3) || !ft_strncmp(*line, "EA ",
-				3) || (*line)[0] == 'F' || (*line)[0] == 'C'))
+	char	*new_line;
+
+	while (*line)
 	{
+		new_line = remove_spaces(*line);
 		free(*line);
-		*line = get_next_line(fd);
+		*line = new_line;
+		if (!ft_strncmp(*line, "NO", 2) || !ft_strncmp(*line, "SO", 2)
+			|| !ft_strncmp(*line, "WE", 2) || !ft_strncmp(*line, "EA", 2)
+			|| (*line)[0] == 'F' || (*line)[0] == 'C')
+		{
+			free(*line);
+			*line = get_next_line(fd);
+		}
+		else
+			break ;
 	}
 	return (*line != NULL);
 }

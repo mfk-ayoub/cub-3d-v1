@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:43:15 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/09 23:13:33 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/10 22:51:25 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void		init_rays(t_rays *rays);
 float		normalize_angle(float angle);
 int			get_colors(char *rgb);
 void		destroy_all(t_cub *cub);
-void		debug(t_cub *cub, t_data *data, t_texture *texture);
 void		move_forward(t_cub *cub, double *new_x, double *new_y);
 void		move_backward(t_cub *cub, double *new_x, double *new_y);
 void		move_left(t_cub *cub, double *new_x, double *new_y);
@@ -97,4 +96,5 @@ int			is_invalid_texture(char *str);
 void		kill_leaks(t_cub *cub);
 int			mouse_move(int x, int y, t_cub *cub);
 char		*remove_spaces(char *str);
+int			find_map(char *map);
 #endif

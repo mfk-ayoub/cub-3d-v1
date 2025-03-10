@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:05:42 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/08 22:32:40 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/10 22:47:00 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ int	ft_exit(t_cub *cub)
 int	run_the_program(t_data *data, t_cub *cub)
 {
 	if (get_player_position(cub, data))
-		return (1);
+	{
+		destroy_data(data, cub->texture);
+		free(cub);
+		exit(1);
+	}
 	if (call_mlx(cub))
 		return (printf(MLX_ERROR), 1);
-	cub->rays = malloc(sizeof(t_rays) * NUM_RAYS);
+	cub->rays = malloc(sizeof(t_rays));
 	if (!cub->rays)
 		return (1);
-	ft_memset(cub->rays, 0, sizeof(t_rays) * NUM_RAYS);
+	ft_memset(cub->rays, 0, sizeof(t_rays));
 	init_rays(cub->rays);
 	init_textures(cub);
 	mlx_hook(cub->win, 2, 1L << 0, key_press, cub);

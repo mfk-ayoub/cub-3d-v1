@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 05:36:40 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/09 23:17:58 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/10 22:50:24 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	process_map(char **line, int fd, t_maplist **map, int *start)
 		return (check_lines(fd, map) == NULL);
 	if (!skip_textures(line, fd))
 		return (free(*line), 1);
-	if ((*line)[0] == ' ' || (*line)[0] == '\t' || (*line)[0] == '1')
+	if (find_map(*line))
 	{
 		if (is_valid_characters(*line))
 		{

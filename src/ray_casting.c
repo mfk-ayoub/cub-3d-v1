@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:03:31 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 16:00:26 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/10 22:45:59 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	calculate_texture_coords(t_rays *rays, t_mlx *img, int i, t_wall *wall)
 		wall->tex_pos = (i - rays->w_top) * wall->step;
 	else
 		wall->tex_pos = 0;
-	wall->tex_y = (int)wall->tex_pos;
+	wall->tex_y = (int)(wall->tex_pos);
 	if (wall->tex_x < 0)
 		wall->tex_x = 0;
 	else if (wall->tex_x >= img->width)

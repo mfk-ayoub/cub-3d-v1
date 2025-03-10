@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:15:12 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/05 22:38:11 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/10 02:22:21 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	set_player_data(t_cub *cub, t_data *data, int row, int col)
 	cub->player_x = col + 0.5;
 	cub->player_y = row + 0.5;
 	if (data->map[row][col] == 'N')
-		cub->p_angle = PI / 2;
-	else if (data->map[row][col] == 'S')
 		cub->p_angle = 3 * PI / 2;
+	else if (data->map[row][col] == 'S')
+		cub->p_angle = PI / 2;
 	else if (data->map[row][col] == 'E')
 		cub->p_angle = 0;
 	else if (data->map[row][col] == 'W')

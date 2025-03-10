@@ -6,7 +6,7 @@
 /*   By: ayel-mou <ayel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:46:00 by ayel-mou          #+#    #+#             */
-/*   Updated: 2025/03/06 23:05:01 by ayel-mou         ###   ########.fr       */
+/*   Updated: 2025/03/10 22:51:01 by ayel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,19 @@ int	parse_texture_extension(t_texture *texture)
 			"xpm") || !check_extension(texture->we, "xpm")
 		|| !check_extension(texture->so, "xpm"))
 		return (1);
+	return (0);
+}
+
+int	find_map(char *map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (map[i] == '0' || map[i] == '1')
+			return (1);
+		i++;
+	}
 	return (0);
 }

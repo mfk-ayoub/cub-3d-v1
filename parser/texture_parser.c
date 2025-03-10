@@ -72,6 +72,8 @@ int	parse_texture_line(t_texture *texture, char *line)
 
 	new_line = NULL;
 	new_line = remove_spaces(line);
+	if (new_line[0] == '1' || new_line[0] == '0')
+		return (free(new_line), free(line), 0);
 	free(line);
 	trimmed = ft_strtrim(&new_line[2], " \t\n");
 	if (!trimmed)
